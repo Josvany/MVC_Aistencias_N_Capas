@@ -7,6 +7,7 @@ using Entity;
 using Capa_Conexion;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace DAL
 {
@@ -25,11 +26,11 @@ namespace DAL
                     {
                         IdTuno = Convert.ToInt32(item["IdTurno"]),
                         Turnos = item["Turno"].ToString(),
-                        TurnInit = Convert.ToDateTime(item["Lunes_Sabado_Inicio"]),
-                        TurnEnd = Convert.ToDateTime(item["Lunes_Sabado_Fin"]),
-                        Horas = float.Parse(item["Turno"].ToString()),
-                        AlmInit = Convert.ToDateTime(item["Almuerzo_Inicio"]),
-                        AlmEnd = Convert.ToDateTime(item["Almuerzo_Fin"])
+                        //TurnInit =( DateTime)item["Lunes_Sabado_Inicio"],//(new CultureInfo("en-US")),
+                        //TurnEnd = (DateTime)(item["Lunes_Sabado_Fin"]),
+                        //Horas = float.Parse(item["Turno"].ToString()),
+                        //AlmInit = (DateTime)(item["Almuerzo_Inicio"]),
+                        //AlmEnd = (DateTime)(item["Almuerzo_Fin"])
 
                     });
                 }
@@ -44,7 +45,7 @@ namespace DAL
                 //}
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

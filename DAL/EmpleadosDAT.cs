@@ -29,7 +29,9 @@ namespace DAL
                         IdDepartament = Convert.ToInt32(item["IdDepartamento"]),
                         IdTurno = int.Parse(item["IdTurno"].ToString()),
                         Salario = Convert.ToDouble(item["Salario"]),
-                        DiaLibre = Convert.ToString(item["DiaLibre"])
+                        DiaLibre = Convert.ToString(item["DiaLibre"]),
+                        Turno = item["Turno"].ToString(),
+                        Departament = item["Departamento"].ToString()
 
                     });
                 }
@@ -52,13 +54,13 @@ namespace DAL
             return objEmpleado;
         }
 
-        public static Empleados Listar(int IdEmpleado)
+        public static Empleados Listar(int IdEmpleados)
         {
             var objemple = new Empleados();
 
             try
             {
-                var dt = Conexion.Leer("Usp_ObtenerEmpleados", IdEmpleado);
+                var dt = Conexion.Leer("Usp_ObtenerEmpleados", IdEmpleados);
                 if (dt.Rows.Count > 0)
                 {
                     objemple.IdEmpleado = (int)dt.Rows[0][0];
@@ -68,6 +70,8 @@ namespace DAL
                     objemple.IdTurno = (int)dt.Rows[0][4];
                     objemple.Salario = (double)dt.Rows[0][5];
                     objemple.DiaLibre = dt.Rows[0][6].ToString();
+                    objemple.Departament = dt.Rows[0][7].ToString();
+                    objemple.Turno = dt.Rows[0][8].ToString();
                 }
             }
             catch (Exception ex)

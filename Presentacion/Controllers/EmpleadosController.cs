@@ -30,8 +30,10 @@ namespace Presentacion.Controllers
             return Redirect("~/");
         }
 
-        public ActionResult Editar(int IdEmpleados = 0)
+        public ActionResult Editar(int IdEmpleados)
         {
+            ViewBag.Departament = DepartamentBLL.Listar();
+            ViewBag.Turno = TurnosBLL.Listar();
             return View(IdEmpleados == 0 ?
             new Empleados() :
             EmpleadosBLL.Listar(IdEmpleados));
