@@ -47,13 +47,13 @@ namespace DAL
             return objEmpleado;
         }
 
-        public static Empleados Listar(int IdEmpleado)
+        public static Empleados Listar(int IdEmpleados)
         {
             var objemple = new Empleados();
 
             try
             {
-                var dt = Conexion.Leer("Usp_ObtenerEmpleados", IdEmpleado);
+                var dt = Conexion.Leer("Usp_ObtenerEmpleados", IdEmpleados);
                 if (dt.Rows.Count > 0)
                 {
                     objemple.IdEmpleado = (int)dt.Rows[0][0];

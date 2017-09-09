@@ -7,6 +7,7 @@ using Entity;
 using Capa_Conexion;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace DAL
 {
@@ -44,7 +45,7 @@ namespace DAL
                 //}
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

@@ -18,6 +18,7 @@ namespace Entity
         public int IdEmpleado { get; set; }
         [Required(ErrorMessage = "El Nombre no puede ser vacio")]
         [StringLength(75)]
+
         public string Nombres { get; set; }
         public bool Status { get; set; }
         [Required(ErrorMessage = "Debe seleccionar un departamento")]
