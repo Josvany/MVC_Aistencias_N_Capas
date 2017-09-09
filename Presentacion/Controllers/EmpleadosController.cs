@@ -22,16 +22,18 @@ namespace Presentacion.Controllers
 
             if (!result)
             {
-                ViewBag.Mensaje = "Erorr a procesar";
+                ViewBag.Mensaje = "Error a procesar";
                 return View("~/Views/Shared/Error.cshtml");
             }
 
 
-            return Redirect("~/");
+            return Redirect("~/Empleados/Index");
         }
 
-        public ActionResult Editar(int IdEmpleados = 0)
+        public ActionResult Editar(int IdEmpleados)
         {
+            ViewBag.Departamento = DepartamentBLL.Listar();
+            ViewBag.Turno = TurnosBLL.Listar();
             return View(IdEmpleados == 0 ?
             new Empleados() :
             EmpleadosBLL.Listar(IdEmpleados));

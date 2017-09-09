@@ -24,12 +24,12 @@ namespace DAL
                     objTurn.Add(new Turnos_Entity
                     {
                         IdTuno = Convert.ToInt32(item["IdTurno"]),
-                        Turnos = item["Turno"].ToString(),
-                        TurnInit = Convert.ToDateTime(item["Lunes_Sabado_Inicio"]),
+                        Turnos = item["Turno"].ToString()
+                        /*TurnInit = Convert.ToDateTime(item["Lunes_Sabado_Inicio"]),
                         TurnEnd = Convert.ToDateTime(item["Lunes_Sabado_Fin"]),
                         Horas = float.Parse(item["Turno"].ToString()),
                         AlmInit = Convert.ToDateTime(item["Almuerzo_Inicio"]),
-                        AlmEnd = Convert.ToDateTime(item["Almuerzo_Fin"])
+                        AlmEnd = Convert.ToDateTime(item["Almuerzo_Fin"])*/
 
                     });
                 }

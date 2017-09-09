@@ -43,6 +43,7 @@
     <Compile Include="DepartamentBLL.cs" />
     <Compile Include="EmpleadosBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TasaCambioBLL.cs" />
     <Compile Include="TurnosBLL.cs" />
   </ItemGroup>
   <ItemGroup>

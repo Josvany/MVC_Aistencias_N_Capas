@@ -22,8 +22,14 @@ namespace Entity
         public bool Status { get; set; }
         [Required(ErrorMessage = "Debe seleccionar un departamento")]
         public int IdDepartament { get; set; }
+
+        public string Departamento { get; set; }
+
         [Required(ErrorMessage = "Debe seleccionar un turno")]
         public int IdTurno { get; set; }
+
+        public string Turno { get; set; }
+
         [Required(ErrorMessage = "Salario no puede ser menor o igual a 0")]
         [Range(typeof(double), "4000.00", "25000.00")]
         public double Salario { get; set; }

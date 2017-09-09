@@ -29,19 +29,14 @@ namespace DAL
                         IdDepartament = Convert.ToInt32(item["IdDepartamento"]),
                         IdTurno = int.Parse(item["IdTurno"].ToString()),
                         Salario = Convert.ToDouble(item["Salario"]),
-                        DiaLibre = Convert.ToString(item["DiaLibre"])
+                        DiaLibre = Convert.ToString(item["DiaLibre"]),
+                        Turno = item["Turno"].ToString(),
+                        Departamento = item["Departamento"].ToString()
+
 
                     });
                 }
 
-                //for (int i = 0; i < dt.Rows.Count - 1; i++)
-                //{
-                //    objDepartament.Add(new Deparment_Entity
-                //    {
-                //        IdDepartament = Convert.ToInt32(dt.Rows[i][0]),
-                //        Departament = dt.Rows[i][0].ToString()
-                //    });
-                //}
 
             }
             catch (Exception)
@@ -68,6 +63,9 @@ namespace DAL
                     objemple.IdTurno = (int)dt.Rows[0][4];
                     objemple.Salario = (double)dt.Rows[0][5];
                     objemple.DiaLibre = dt.Rows[0][6].ToString();
+                    objemple.Departamento = dt.Rows[0][7].ToString();
+                    objemple.Turno = dt.Rows[0][8].ToString();
+                   
                 }
             }
             catch (Exception ex)

@@ -1,0 +1,171 @@
+﻿@model Entity.Empleados
+
+@{
+    ViewBag.Title = "Editar";
+    List <Entity.Deparment_Entity> Departamento = ViewBag.Departamento;
+    List<Entity.Turnos_Entity> Turno = ViewBag.Turno;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+
+    <h1>Empleados<small>Editar Empleados</small></h1>
+</div>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Catalogos", "Editar", "Empleados")</li>
+    <li class="active">@(Model.IdEmpleado > 0 ? Model.Nombres:"Nuevo Empleado")</li>
+</ol>
+
+
+@using (Html.BeginForm("Guardar","Empleados",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Empleados</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdEmpleado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdEmpleado, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.IdEmpleado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Status)
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdDepartament, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" name="IdDepartamento">
+                    @foreach (var D in Departamento)
+                    {
+                        <option @(D.IdDepartament == Model.IdDepartament ? "Seleccionar" : "") value="@D.IdDepartament">@D.Departament</option>
+                    }
+                </select>
+                @*@Html.EditorFor(model => model.IdDepartament, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.IdDepartament, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Departamento, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Departamento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Departamento, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdTurno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select  class="form-control" name="IdTurno">
+                    @foreach (var T in Turno)
+                    {
+                        <option @(T.IdTuno == Model.IdTurno ? "Seleccionar" : "") value="@T.IdTuno">@T.Turnos</option>
+                    }
+                </select>
+                @*@Html.EditorFor(model => model.IdTurno, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.IdTurno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Turno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Turno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Turno, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Salario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Salario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Salario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiaLibre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaLibre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaLibre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+         @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            <a href="#" data-toggle="modal"
+               data-target="#ModalEliminar"
+               class="btn btn-danger">Eliminar</a>
+            <a href="@Url.Action("Index","Empleados")"
+               class="btn btn-primary">Regresar</a>
+        </div>
+
+    </div>
+}
+
+
+<div class="modal fade" id="ModalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación de Borrado</h4>
+            </div>
+            <div class="modal-body">
+                <p>Quiere borrar el Empleado '@Model.Nombres'.</p>
+                <p>
+                    <strong>Esta Seguro de Continuar?</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                @if (Model.IdEmpleado > 0)
+                {
+                    <a href="/Empleados/Borrar/@Model.IdEmpleado"
+                       class="btn btn-danger">Si, Borrar el Empleado</a>
+                }
+                <button type="button" class="btn btn-success" data-dismiss="modal">
+                    No, Borrar el Empleado
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
