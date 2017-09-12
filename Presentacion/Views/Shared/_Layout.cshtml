@@ -1,134 +1,97 @@
-﻿<!DOCTYPE html>
+﻿@*@model IEnumerable<Entity.Categorias_Entity>*@
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Farmacia Muerte Lenta</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Asistencia MVC NCAPAS-2017</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/icon.ico" />
     <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
 
-
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    @*@Scripts.Render("~/bundles/modernizr")*@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar3">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Asistencia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand logo" href="#">
+                    <img src="~/Images/logo.svg" alt="Muerte lenta">
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+            <div id="navbar3" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-collapse">
+                    <li class="active">@Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "active" })</li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Catálogos
-                            <b class="caret"></b>
-                        </a>
-                        <ul role="menu" class="dropdown-menu">
-                            <li>@Html.ActionLink("Empleados", "Index", "Empleados")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Profesores", "Index", "Profesores")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Departamentos", "Index", "Departamentos")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Tipo Justificación", "Index", "TipoJustificaciones")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Turnos", "Index", "Turnos")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Dias", "Index", "Dias")</li>
-                            <li class="divider"></li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorias<span class="caret"></span></a>
 
-                            <li>@Html.ActionLink("Tasa De Cambio - BCN", "Index", "TasaCambio")</li>
-                            <li class="divider"></li>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Todas", "Index", "Categorias", null, new { @class = "second" })</li>
+                            @*@foreach (var item in Model)
+                            {
+                                <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
+                            }*@
                         </ul>
                     </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Operaciones
-                            <b class="caret"></b>
-                        </a>
-                        <ul role="menu" class="dropdown-menu">
-                            <li>@Html.ActionLink("Justificación del Personal", "Index", "JustificacionPersonal")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Registro de Marcas", "Index", "RegistroMarcas")</li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Administración
-                            <b class="caret"></b>
-                        </a>
-                        <ul role="menu" class="dropdown-menu">
-                            <li>@Html.ActionLink("Registrar como nuevo usuario", "Register", "Account")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
-                            <li class="divider"></li>
-
-                        </ul>
-                    </li>
-
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reportes
-                            <b class="caret"></b>
-                        </a>
-                        <ul role="menu" class="dropdown-menu">
-                            <li>@Html.ActionLink("Consulta de Empleados", "Index", "Query")</li>
-                            <li class="divider"></li>
-
-                            <li>@Html.ActionLink("Consulta de Empleados2", "Index2", "Query")</li>
-                            <li class="divider"></li>
-
-                            <li>@Html.ActionLink("Consulta de Empleados5", "Index5", "Query")</li>
-                        </ul>
-                    </li>
-
-
-
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracion<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Categorias", "Index", "Categorias", null, new { @class = "second" })</li>
+                        </ul>
+                    </li>
 
+                </ul>
             </div>
+            <!--/.nav-collapse -->
         </div>
-    </div>
-    <div class="container body-content">
+        <!--/.container-fluid -->
+    </nav>
+    <div style="clear:both;"></div>
+
+    <div>
         @RenderBody()
-        <hr />
-        <footer>
-            <p class="text-center">&copy; @DateTime.Now.Year - Asistencia MVC NCAPAS-2017</p>
-        </footer>
+
     </div>
+
+    <footer class="piedepagina p-y-1" role="contentinfo">
+        <div class="container">
+            <p>2017 © Todos los derechos reservados</p>
+            <ul class="redes-sociales">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"> </i>  </a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> </a></li>
+                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i> </a></li>
+            </ul>
+
+        </div>
+
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <script src="~/Scripts/jquery.dataTables.js"></script>
-    <script src="~/Scripts/jquery.dataTables.min.js"></script>
-
-
-    @*<script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    @*<script src="~/Scripts/jquery.dataTables.min.js"></script>*@
     <script type="text/javascript">
             $(document).ready(function () {
                 $('#grid').DataTable();
             });
     </script>
 
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>

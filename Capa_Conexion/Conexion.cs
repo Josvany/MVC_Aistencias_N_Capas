@@ -14,7 +14,7 @@ namespace Capa_Conexion
         {
             try
             {
-                string strConnect = "Data Source=.;Initial Catalog=BDAsistenciaMVC;User ID=sa;Password=2017";
+                string strConnect = @"Data Source=TXNICARAGUA\SQLEXPRESS;Initial Catalog=DB_Farmacia;User ID=sa;Password=josvany";
 
                 return new SqlConnection(strConnect);
             }

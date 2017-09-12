@@ -1,158 +1,76 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@*@model IEnumerable<Capa_Datos.Orm.cls_Categorias>*@
+
+@{
+
 }
 
-<style>
-    .carousel-inner > .item > img,
-    .carousel-inner > .item > a > img {
-        width: 70%;
-        margin: auto;
-    }
 
-    .carousel-caption {   
-        background: rgba(213, 66, 66, 0.7);
-    }
-</style>
-<div class="jumbotron">
-    <h1>Asistencia MVC</h1>
-    <p class="lead">Un sistema integral de control de acceso permite contar con el registro de entrada y salida del personal mediante el uso de: tarjetas de proximidad, teclado y lector biométrico de huella y a la ves, si así lo desea poder controlar la entrada y salida de los sitios que lo requieran.</p>
+<div class="info1">
+
 </div>
 
-<div class="container">
-    <br>
-    <div id="carouselPrincipal" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#carouselPrincipal" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselPrincipal" data-slide-to="1"></li>
-            <li data-target="#carouselPrincipal" data-slide-to="2"></li>
-            <li data-target="#carouselPrincipal" data-slide-to="3"></li>
-        </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-
-            <div class="item active">
-
-                <img src="~/Images/Asistencia1.jpg" height="400" alt="Asistencia1">
-                <div class="carousel-caption">
-                    <h3>soluciones inteligentes C.A. </h3>
-                    <p>Contamos con sistemas de control de asistencia para tus colaboradores, con el fin de tener un registro de todas sus entradas y salidas, así como tener un cálculo preciso del tiempo laborado.</p>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="~/Images/Asistencia2.jpg" height="400" alt="Asistencia2">
-                <div class="carousel-caption">
-                    <h3>diferentes sistemas C.A.</h3>
-                    <p>Las diferentes tecnologías que ofrecemos junto con el software para llevar un correcto registro de las entradas y salidas, faltas, vacaciones, permisos y más funciones, son una herramienta indispensable para poder realizar la prenómina de su empresa.</p>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="~/Images/Asistencia3.jpg" height="400" alt="Asistencia3">
-                <div class="carousel-caption">
-                    <h3>Le asesoramos</h3>
-                    <p>en que tecnología es la ideal para su empresa en base a las instalaciones, cantidad de usuarios y tipo de tecnología más adecuada. </p>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="~/Images/Asistencia4.jpg" height="400" alt="Asistencia4">
-                <div class="carousel-caption">
-                    <h3>Contamos con las marcas </h3>
-                    <p>líderes en el mercado buscando ofrecer una solución llave en mano para nuestros clientes.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Controles de Navegacion -->
-        <a class="left carousel-control" href="#carouselPrincipal" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Atras</span>
-        </a>
-        <a class="right carousel-control" href="#carouselPrincipal" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Siguiente</span>
-        </a>
-    </div>
-</div>
-
-<table id="grid" class="table table-hover table-bordered">
-    @*<thead>
+<table class="table" id="grid" style="display:none;">
+    <thead>
         <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IdEmpleado)
+                </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @*@Html.DisplayNameFor(model => model.CatNombreValue)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Apellido)
+                @*@Html.DisplayNameFor(model => model.Status)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sexo)
+                @*@Html.DisplayNameFor(model => model.Departament)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
+                @*@Html.DisplayNameFor(model => model.Turno)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Salario)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.DiaLibre)*@
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellido)
-                </td>
-                <td>
-                    @(item.Sexo == 1 ? "Hombre" : "Mujer")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
-                </td>
-                <td>
-                    <a class="btn btn-xs btn-default" href="~/Home/Ver/@item.id">Visualizar</a>
-                    <a class="btn btn-xs btn-primary" href="~/Home/Crud/@item.id">Editar</a>
-                    <a onclick="return confirm('¿Esta seguro de eliminar el registro?');
-          " class="btn btn-xs btn-danger" href="~/Home/Eliminar/@item.id">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>*@
+        @*@foreach (var item in Model)
+            {*@
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IdEmpleado)
+                </td>*@
+            <td>
+                @*@Html.DisplayFor(modelItem => item.CatNombreValue)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Status)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Departament)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Turno)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Salario)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DiaLibre)*@
+            </td>
+            <td>
+                @*@Html.ActionLink("Editar", "Editar", new { IdEmpleados = item.IdEmpleado }, new { @class = "btn alert alert-warning" })*@
+                @*|
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+        @*}*@
+    </tbody>
 
 </table>
 
-
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Sus necesidades son nuestras metas!</h2>
-        <p>
-            La detección de una situación anómala en el menor tiempo posible o la posibilidad de adelantarse a hechos futuribles,Se utiliza la filosofía de BI
-            (Business Inteligence), extrayendo la información del Sistema Transaccional y almacenando la misma en un repositorio. Es un programa de control horario personal ágil,
-            potente y a la vez flexible, ya que permite modificaciones para adaptar su funcionamiento a las necesidades de cada cliente.
-        </p>
-
-    </div>
-    <div class="col-md-4">
-        <h2>El nivel de producción no siempre es el mismo.</h2>
-        <p>
-            Depende de muchos factores: un pedido o la anulación a última hora, incrementa o disminuye la demanda, etc. Por lo que se deben de utilizar herramientas
-            que le permitan adaptarse y flexibilizarse con pocos cambios.En su apartado de control de asistencia de los trabajadores,
-            tiene como objetivo generar unos totales acumulados de los distintos tipos de horas de cada Empleado
-        </p>
-
-    </div>
-    <div class="col-md-4">
-        <h2>Toda esta información se debe de gestionar</h2>
-        <p>
-            La historia es nuestra experiencia y bajo ningún concepto se debe de perder ésta. Este hecho hace necesario gestionar sus históricos,
-            permitiéndose un nivel de detalle desde un operario hasta agrupaciones de ésta.La información recibida por los controles de acceso se procesa para obtener
-            con la mayor fiabilidad toda la información necesaria, para el análisis del control de asistencia de trabajadores de todos los empleados de una empresa.
-        </p>
-
-    </div>
-</div>

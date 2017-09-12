@@ -54,7 +54,7 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
   flex-direction: column;
   border-radius: 20px;
   opacity: 0.5;
-  filter: alpha(opacity=50)
+  filter: alpha(opacity=50);
   /* For IE8 and earlier */ }
 
 .dropdown-menu:hover {
@@ -67,14 +67,8 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
   text-align: center; }
 
 .piedepagina .redes-sociales {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0; }
@@ -84,8 +78,7 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
   font-size: 2rem;
   margin: 0 .5rem;
   opacity: .7;
-  -webkit-transition: all .5s ease;
-          transition: all .5s ease; }
+  transition: all .5s ease; }
 
 .piedepagina .redes-sociales a:hover {
   opacity: 1; }
