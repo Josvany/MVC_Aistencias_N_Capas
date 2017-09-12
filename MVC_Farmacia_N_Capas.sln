@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacion\Presentacion.csproj", "{5840F5C0-1662-4DB0-8D7E-4028B2630DF8}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_Farmacia", "DB_Farmacia\DB_Farmacia.sqlproj", "{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{5840F5C0-1662-4DB0-8D7E-4028B2630DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5840F5C0-1662-4DB0-8D7E-4028B2630DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5840F5C0-1662-4DB0-8D7E-4028B2630DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
