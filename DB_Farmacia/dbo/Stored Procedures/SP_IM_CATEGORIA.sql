@@ -4,11 +4,11 @@
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[SP_IM_CATEGORIA] (
-	@CatIntdId  uniqueidentifier ,
+    @CatIntdId   UNIQUEIDENTIFIER = NULL,
     @CatNombre   VARCHAR(50),
     @CatSysName  VARCHAR(50),
-	@catStatus bit
-
+    @CatStatus  BIT
+	
 )
 AS
 BEGIN
@@ -20,7 +20,7 @@ BEGIN
 
     BEGIN TRY
 
-	  IF NOT EXISTS ( SELECT * FROM CAT_CATEGORIA WHERE CAT_INT_ID = @CatIntdId)
+	  IF (@CatIntdId IS NULL)
 	  BEGIN
 
 			INSERT INTO [dbo].[CAT_CATEGORIA]
@@ -35,7 +35,7 @@ BEGIN
 					NEWID(),
 					@CatNombre,
 					@CatSysName,
-					@catStatus
+					@CatStatus
 			   )
 
 		END
@@ -44,7 +44,7 @@ BEGIN
 				UPDATE CAT_CATEGORIA
 				SET CAT_NOMBRE = @CatNombre,
 					CAT_SYS_NAME = @CatSysName,
-					CAT_STATUS = @catStatus
+					CAT_STATUS = @CatStatus
 			  WHERE CAT_INT_ID = @CatIntdId
 
 		  END
