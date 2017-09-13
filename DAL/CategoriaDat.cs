@@ -17,7 +17,9 @@ namespace DAL
             var objCat = new List<Categorias_Entity>();
             try
             {
-                var dt = Conexion.Leer("SP_Listar", "CAT_CATEGORIA");
+                Conexion.IniciarSesion();
+
+                var dt = Conexion.GDatos.TraerDataTable("SP_Listar", "CAT_CATEGORIA");
 
                 foreach (DataRow item in dt.Rows)
                 {
@@ -25,7 +27,7 @@ namespace DAL
                     {
                         CatIntIdValue = (Guid)(item["CAT_INT_ID"]),
                         CatNombreValue = item["CAT_NOMBRE"].ToString(),
-                        CatStatusValue = Convert.ToBoolean(item["CAT_STATUS"]),
+                        CatStatusValue = (item["CAT_STATUS"]) == DBNull.Value ? false : (bool)(item["CAT_STATUS"]),
                         CatCodigoValue = Convert.ToString(item["CAT_SYS_NAME"])
                     });
                 }
@@ -43,20 +45,45 @@ namespace DAL
             var objCat = new Categorias_Entity();
             try
             {
-                var dt = Conexion.Leer("Listar_Cat", IdCat);
-                if (dt.Rows.Count > 0)
+                //var dt = Conexion.GDatos.TraerDataTable("",idCat);
+                DataTable dt = Conexion.GDatos.TraerDataTable("SP_Listar", "CAT_CATEGORIA");
+                var row = (from Cat in dt.AsEnumerable()
+                           where Cat.Field<Guid>("CAT_INT_ID") == IdCat
+                           select Cat).ToList();
+                if (row.Count > 0)
                 {
-                    objCat.CatIntIdValue = (Guid)dt.Rows[0][0];
-                    objCat.CatNombreValue = dt.Rows[0][1].ToString();
-                    objCat.CatCodigoValue = dt.Rows[0][2].ToString();
-                    objCat.CatStatusValue = (bool)dt.Rows[0][3];
+
+                    objCat.CatIntIdValue = (Guid)row[0].ItemArray[0];
+                    objCat.CatNombreValue = row[0].ItemArray[1].ToString();
+                    objCat.CatCodigoValue = row[0].ItemArray[2].ToString();
+                    objCat.CatStatusValue = (bool)row[0].ItemArray[3];
+
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+
                 throw;
             }
             return objCat;
+        }
+
+        public static bool Create(Categorias_Entity objCat)
+        {
+            bool flag = false;
+            
+            try
+            {
+                Conexion.GDatos.Ejecutar("SP_IM_Categoria", objCat.CatIntIdValue, objCat.CatNombreValue, objCat.CatCodigoValue,objCat.CatStatusValue);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
         }
     }
 }

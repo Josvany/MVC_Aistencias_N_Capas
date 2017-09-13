@@ -11,8 +11,7 @@ namespace Entity
     {
         public void EmpleadoEntity()
         {
-            DepartamentEnty = new Deparment_Entity();
-            TurnosEntity = new Turnos_Entity();
+         
 
         }
         public int IdEmpleado { get; set; }
@@ -37,8 +36,7 @@ namespace Entity
         [Required(ErrorMessage = "Día libre no puede ser vacio")]
         public string DiaLibre { get; set; }
 
-        public Deparment_Entity DepartamentEnty { get; set; }
-        public Turnos_Entity TurnosEntity { get; set; }
+        
 
 
     }

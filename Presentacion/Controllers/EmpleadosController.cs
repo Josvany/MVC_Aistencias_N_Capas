@@ -32,8 +32,8 @@ namespace Presentacion.Controllers
 
         public ActionResult Editar(int IdEmpleados)
         {
-            ViewBag.Departamento = DepartamentBLL.Listar();
-            ViewBag.Turno = TurnosBLL.Listar();
+            //ViewBag.Departamento = DepartamentBLL.Listar();
+            //ViewBag.Turno = TurnosBLL.Listar();
             return View(IdEmpleados == 0 ?
             new Empleados() :
             EmpleadosBLL.Listar(IdEmpleados));

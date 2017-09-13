@@ -19,73 +19,20 @@ namespace Presentacion.Controllers
         // GET: Categorias/Details/5
         public ActionResult Crud(Guid idCat)
         {
-            return View(CategoriasBLL.Listar(idCat));
+            return View( idCat == Guid.Empty ? new Categorias_Entity() : CategoriasBLL.Listar(idCat));
         }
 
         // GET: Categorias/Create
-        public ActionResult Create()
+        public ActionResult Create(Categorias_Entity objCat)
         {
-            return View();
-        }
+            var result = CategoriasBLL.Create(objCat);
 
-        // POST: Categorias/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            if (!result)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return View("~/Views/Shared/Error.cshtml");
             }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: Categorias/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Categorias/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Categorias/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Categorias/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return Redirect("~/Categorias/Index");
         }
     }
 }

@@ -19,5 +19,9 @@ namespace BLL
             return CategoriaDat.Listar(IdCat);
         }
 
+        public static bool Create(Categorias_Entity objCat)
+        {
+            return CategoriaDat.Create(objCat);
+        }
     }
 }

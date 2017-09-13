@@ -17,7 +17,7 @@ namespace DAL
             var objEmpleado = new List<Empleados>();
             try
             {
-                var dt = Conexion.Leer("Usp_ListarEmpleados");
+                var dt = Conexion.GDatos.TraerDataTable("Usp_ListarEmpleados");
 
                 foreach (DataRow item in dt.Rows)
                 {
@@ -53,7 +53,7 @@ namespace DAL
 
             try
             {
-                var dt = Conexion.Leer("Usp_ObtenerEmpleados", IdEmpleados);
+                var dt = Conexion.GDatos.TraerDataTable("Usp_ObtenerEmpleados", IdEmpleados);
                 if (dt.Rows.Count > 0)
                 {
                     objemple.IdEmpleado = (int)dt.Rows[0][0];
@@ -65,13 +65,13 @@ namespace DAL
                     objemple.DiaLibre = dt.Rows[0][6].ToString();
                     objemple.Departamento = dt.Rows[0][7].ToString();
                     objemple.Turno = dt.Rows[0][8].ToString();
-                   
+
                 }
             }
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             return objemple;
         }
@@ -81,44 +81,44 @@ namespace DAL
             DataTable dt = null;
             try
             {
-                dt = Conexion.Leer("Usp_ObtenerEmpleados", IdEmpleado);
+                dt = Conexion.GDatos.TraerDataTable("Usp_ObtenerEmpleados", IdEmpleado);
             }
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             return dt;
         }
 
-        public static bool Create( Empleados objEmple)
+        public static bool Create(Empleados objEmple)
         {
             bool flag = false;
-            try
-            {
-                using (var cn = Conexion.GetConnection())
-                {
-                    cn.Open();
-                    var SqlQuery = new SqlCommand("Usp_InsertEmpleados", cn);
-                    SqlQuery.CommandType = CommandType.StoredProcedure;
+            //try
+            //{
+            //    Conexion.IniciarSesion(".", "DB_Farmacia", "sa", "josvany");
 
-                    SqlQuery.Parameters.AddWithValue("@Nombres",objEmple.Nombres);
-                    SqlQuery.Parameters.AddWithValue("@Activo", objEmple.Status);
-                    SqlQuery.Parameters.AddWithValue("@IdDepartamento", objEmple.IdDepartament);
-                    SqlQuery.Parameters.AddWithValue("@IdTurno", objEmple.IdTurno);
-                    SqlQuery.Parameters.AddWithValue("@Salario", objEmple.Salario);
-                    SqlQuery.Parameters.AddWithValue("@DiaLibre", objEmple.DiaLibre);
 
-                    SqlQuery.ExecuteNonQuery();
-                    flag = true;
+            //    var SqlQuery = new SqlCommand("Usp_InsertEmpleados", cn);
+            //    SqlQuery.CommandType = CommandType.StoredProcedure;
 
-                }
-            }
-            catch (Exception)
-            {
+            //    SqlQuery.Parameters.AddWithValue("@Nombres", objEmple.Nombres);
+            //    SqlQuery.Parameters.AddWithValue("@Activo", objEmple.Status);
+            //    SqlQuery.Parameters.AddWithValue("@IdDepartamento", objEmple.IdDepartament);
+            //    SqlQuery.Parameters.AddWithValue("@IdTurno", objEmple.IdTurno);
+            //    SqlQuery.Parameters.AddWithValue("@Salario", objEmple.Salario);
+            //    SqlQuery.Parameters.AddWithValue("@DiaLibre", objEmple.DiaLibre);
 
-                throw;
-            }
+            //    SqlQuery.ExecuteNonQuery();
+            //    flag = true;
+
+
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
 
             return flag;
         }
@@ -128,14 +128,13 @@ namespace DAL
             bool flag = false;
             try
             {
-                using (var cn = Conexion.GetConnection())
-                {
-                    cn.Open();
-                    Conexion.Guardar("Usp_UpdateEmpleados", objEmple.IdEmpleado, objEmple.Nombres, objEmple.IdDepartament, objEmple.IdTurno
-                                                           ,objEmple.Salario, objEmple.DiaLibre);
-                    flag = true;
+                Conexion.IniciarSesion(".", "DB_Farmacia", "sa", "josvany");
 
-                }
+                Conexion.GDatos.Ejecutar("Usp_UpdateEmpleados", objEmple.IdEmpleado, objEmple.Nombres, objEmple.IdDepartament, objEmple.IdTurno
+                                                           , objEmple.Salario, objEmple.DiaLibre);
+                flag = true;
+
+
             }
             catch (Exception)
             {

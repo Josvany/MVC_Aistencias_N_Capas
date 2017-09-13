@@ -10,110 +10,34 @@ namespace Capa_Conexion
 {
     public class Conexion
     {
-        public static SqlConnection GetConnection()
+        public static GDatos GDatos;
+        // mando a llamar abrir cesion
+        public static bool IniciarSesion(string nombreServidor, string baseDatos, string usuario, string password)
         {
-            try
-            {
-                string strConnect = @"Data Source=TXNICARAGUA\SQLEXPRESS;Initial Catalog=DB_Farmacia;User ID=sa;Password=josvany";
+            GDatos = new SqlServer(nombreServidor, baseDatos, usuario, password);
+            return GDatos.Autenticar(usuario, password);
+        } //fin inicializa sesion
 
-                return new SqlConnection(strConnect);
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception(ex.Message);
-            }
+        public static bool IniciarSesion(string nombreServidor, string baseDatos)
+        {
+            GDatos = new SqlServer(nombreServidor, baseDatos);
+            return GDatos.Autenticar(true);
         }
-        public static DataTable Leer(string Cmd)
+        public static bool IniciarSesion(string locationBD)
         {
-            DataTable dt = new DataTable();
-            SqlConnection Cn = GetConnection();
-            SqlDataAdapter da = new SqlDataAdapter(Cmd, Cn);
-            try
-            {
-                Cn.Open();
-                da.SelectCommand.Connection = Cn;
-                da.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    da = new SqlDataAdapter(("SET DATEFORMAT DMY; EXEC " + Cmd), Cn);
-                    da.SelectCommand.Connection = Cn;
-                    da.Fill(dt);
-                }
-                catch (Exception exa)
-                {
-                    throw new Exception(exa.Message);
-                }
-            }
-            return dt;
-        }
-        public static DataTable Leer(string Procedimiento, params object[] Parametros)
-        {
-            SqlConnection cn = Conexion.GetConnection();
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter();
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = Procedimiento;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 0;
-            cn.Open();
-            cmd.Connection = cn;
-            da.SelectCommand = cmd;
-            SqlCommandBuilder.DeriveParameters(cmd);
-
-            try
-            {
-                if ((Parametros != null))
-                {
-                    for (int i = 1; i <= Parametros.Length; i++)
-                    {
-                        cmd.Parameters[i].Value = Parametros[i - 1];
-                    }
-                }
-
-                da.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return dt;
+            GDatos = new SqlServer(locationBD);
+            return GDatos.Autenticar(true);
         }
 
-        public static bool Guardar(string Procedimiento,  params object[] Parametros)
+        public static bool IniciarSesion()
         {
-            try
-            {
-                SqlConnection cn = Conexion.GetConnection();
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandText = Procedimiento;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandTimeout = 0;
-                cn.Open();
-                cmd.Connection = cn;
-                SqlCommandBuilder.DeriveParameters(cmd);
-                if (Parametros != null)
-                {
-                    for (int i = 1; i <= Parametros.Length; i++)
-                    {
-                        cmd.Parameters[i].Value = Parametros[i - 1];
-                    }
-                }
-                cmd.ExecuteNonQuery();
-                cmd = null;
-                cn.Close();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-                //throw new Exception("SP: " + Procedimiento + "\r\n" + ex.Message);                       
-            }
+            return IniciarSesion(@".", "DB_Farmacia", "sa", "josvany");
         }
+
+        //mando a cerrar cesion
+        public static void FinalizarSesion()
+        {
+            GDatos.CerrarConexion();
+        } //fin FinalizaSesion
     }
 }

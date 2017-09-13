@@ -48,11 +48,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="DepatamentoDAL.cs" />
     <Compile Include="EmpleadosDAT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TasaCambioDAL.cs" />
-    <Compile Include="TurnosDAT.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capa_Conexion\Capa_Conexion.csproj">

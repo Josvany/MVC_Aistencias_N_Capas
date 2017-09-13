@@ -10,9 +10,10 @@ namespace BLL
 {
     public class TurnosBLL
     {
-        public static List<Turnos_Entity>Listar()
-        {
-            return TurnosDAT.Listar();
-        }
+        //public static List<Turnos_Entity>Listar()
+        //{
+        //    //return TurnosDAT.Listar();
+        //    return null;
+        //}
     }
 }

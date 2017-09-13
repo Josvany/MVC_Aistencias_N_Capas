@@ -57,5 +57,35 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\TBL_USER_INFO.sql" />
+    <Build Include="dbo\Tables\TBL_USER.sql" />
+    <Build Include="dbo\Tables\TBL_PRODUCTO.sql" />
+    <Build Include="dbo\Tables\TBL_FACTURA.sql" />
+    <Build Include="dbo\Tables\TBL_DET_FACTURA.sql" />
+    <Build Include="dbo\Tables\CAT_TYPE_USER.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="dbo\Tables\CAT_ROLE.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="dbo\Tables\CAT_PAGO.sql" />
+    <Build Include="dbo\Tables\CAT_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_Listar.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_USER_INFO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_USER.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_TYPE_USER.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_ROL.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_PRODUCTO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_PAGO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_FACTURA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_DET_FACTURA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_IM_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ALL_ROLE.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ALL_CAT.sql" />
   </ItemGroup>
 </Project>
