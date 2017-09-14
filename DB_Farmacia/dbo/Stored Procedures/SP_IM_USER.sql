@@ -6,7 +6,6 @@
 CREATE PROCEDURE SP_IM_USER (
     @USE_INT_ID     UNIQUEIDENTIFIER = NULL,
 	@USE_INF_INT_ID UNIQUEIDENTIFIER,
-    @USE_NAME       VARCHAR(100),
 	@USE_LOGIN      VARCHAR(100),
     @USE_PASS       VARCHAR(100),
 	@ROL_INT_ID     UNIQUEIDENTIFIER,
@@ -30,7 +29,6 @@ BEGIN
              (
 			    [USE_INT_ID]
 			   ,[USE_INF_INT_ID]
-			   ,[USE_NAME]
 			   ,[USE_LOGIN]
 			   ,[USE_PASS]
 			   ,[ROL_INT_ID]
@@ -40,7 +38,6 @@ BEGIN
 			   (
 					NEWID(),
 					@USE_INF_INT_ID,
-					@USE_NAME,
 					@USE_LOGIN,
 					@USE_PASS,
 					@ROL_INT_ID,
@@ -51,8 +48,7 @@ BEGIN
         ELSE
 		   BEGIN
 				UPDATE TBL_USER
-				SET USE_NAME = @USE_NAME,
-					USE_PASS = @USE_PASS,
+				SET USE_PASS = @USE_PASS,
 					ROL_INT_ID = @ROL_INT_ID,
 					USE_STATUS = @USE_STATUS
 			  WHERE USE_INT_ID = @USE_INT_ID

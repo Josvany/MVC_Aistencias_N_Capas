@@ -4,7 +4,7 @@
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[SP_IM_ROL] (
-   @RolIntdId   UNIQUEIDENTIFIER = NULL,
+   @RolIntdId   UNIQUEIDENTIFIER ,
     @RolName  VARCHAR(50)
 	
 )
@@ -18,7 +18,7 @@ BEGIN
 
     BEGIN TRY
 
-	  IF (@RolIntdId IS NULL)
+	  IF NOT EXISTS (SELECT * FROM CAT_ROLE WHERE ROL_INT_ID = @RolIntdId)
 	  BEGIN
 
 			INSERT INTO [dbo].[CAT_ROLE]

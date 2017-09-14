@@ -4,7 +4,7 @@
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[SP_IM_CATEGORIA] (
-    @CatIntdId   UNIQUEIDENTIFIER = NULL,
+    @CatIntdId   UNIQUEIDENTIFIER,
     @CatNombre   VARCHAR(50),
     @CatSysName  VARCHAR(50),
     @CatStatus  BIT
@@ -20,7 +20,7 @@ BEGIN
 
     BEGIN TRY
 
-	  IF (@CatIntdId IS NULL)
+	  IF NOT EXISTS (SELECT * FROM CAT_CATEGORIA WHERE CAT_INT_ID = @CatIntdId)
 	  BEGIN
 
 			INSERT INTO [dbo].[CAT_CATEGORIA]

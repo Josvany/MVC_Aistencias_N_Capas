@@ -9,9 +9,10 @@ namespace Entity
 {
     public class Categorias_Entity
     {
-        //public Categorias_Entity()
-        //{
-        //}
+        public Categorias_Entity()
+        {
+
+        }
 
         public Guid CatIntIdValue { get; set; }
 

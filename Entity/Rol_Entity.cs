@@ -9,7 +9,10 @@ namespace Entity
 {
     public class Rol_Entity
     {
-        public int Rol_Int_Id { get; set; }
+        public Guid Rol_Int_Id { get; set; }
+        [Required (ErrorMessage = "Ingresar Nombre")]
+        [Display (Name = "Nombre rol")]
+        public string Rol_Name { get; set; }
 
     }
 }
