@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Globalization;
+using System.Web.Helpers;
+using System.Security.Claims;
 
 namespace Presentacion
 {
@@ -18,6 +20,7 @@ namespace Presentacion
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-Ni");
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
         }
     }
 }

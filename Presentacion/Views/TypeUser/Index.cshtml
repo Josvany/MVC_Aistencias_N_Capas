@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Entity.Type_User_Entity>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="info2">
+    <div class="jumbotron">
+        <h4 style="text-align:center">Lista de Tipos de usuario</h4>
+        @Html.ActionLink("Nuevo tipo de usuario", "Crud", new { IdType = Guid.Empty }, new { @class = "btn btn-primary pull-right" })
+        <br />
+        <hr />
+        <table class="table table-bordered table-responsive" id="grid">
+            <thead>
+                <tr>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.CatIntIdValue)
+                            </th>*@
+                    <th>
+                        Tipo
+                    </th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.CatIntIdValue)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Typ_Use_Name)
+                        </td>
+                     
+                        <td>
+                            @Html.ActionLink("Editar", "Crud", new { IdType = item.Typ_Use_Int_id }, new { @class = "alert alert-warning" })
+                            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

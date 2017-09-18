@@ -15,12 +15,19 @@ namespace Entity
         }
         public Guid User_Int_Id { get; set; }
 
-        public Guid Use_Ing_Int_Id { get; set; }
+        public Guid Use_Inf_Int_Id { get; set; }
         [Required(ErrorMessage = "Ingresar ")]
         [Display(Name = "Nombre de Usuario")]
         public string Use_Login { get; set; }
         [Display(Name = "Contraseña")]
+        [DataType(DataType.Password)]
         public string Use_Pass { get; set; }
+
+        [Display(Name = "Confirmar Contrañena")]
+        [Compare("Use_Pass", ErrorMessage = "Favor confirmar Contraseña")]
+        [DataType(DataType.Password)]
+        public string Use_Confirm_Pass { get; set; }
+
         [Display(Name = "Estado")]
         public bool Use_Status { get; set; }
         [Display(Name = "Rol")]

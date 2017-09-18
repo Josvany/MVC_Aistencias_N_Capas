@@ -52,10 +52,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracion<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Categorias", "Index", "Categorias", null, new { @class = "second" })</li>
+                            <li>@Html.ActionLink("Tipos de usuarios", "Index", "TypeUser", null, new { @class = "second" })</li>
                         </ul>
                     </li>
-
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
             <!--/.nav-collapse -->
         </div>

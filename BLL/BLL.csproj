@@ -46,6 +46,8 @@
     <Compile Include="RolBLL.cs" />
     <Compile Include="TasaCambioBLL.cs" />
     <Compile Include="TurnosBLL.cs" />
+    <Compile Include="Type_User_BLL.cs" />
+    <Compile Include="User_BLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
