@@ -14,6 +14,11 @@ namespace BLL
         {
             return User_Dal.Listar();
         }
+        public static User_Entity Listar(string Uselogin, string Usepass)
+        {
+            return User_Dal.Listar(Uselogin, Usepass);
+        }
+
 
         public static bool Create(User_Entity Objuser)
         {

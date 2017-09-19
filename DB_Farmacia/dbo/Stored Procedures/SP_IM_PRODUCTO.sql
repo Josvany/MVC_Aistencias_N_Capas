@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE SP_IM_PRODUCTO (
+CREATE PROCEDURE [dbo].[SP_IM_PRODUCTO] (
     @PROD_INT_ID    UNIQUEIDENTIFIER = NULL,
     @PROD_NOMBRE     VARCHAR(50),
     @PROD_SYS_NAME   VARCHAR(50),
@@ -11,7 +11,8 @@ CREATE PROCEDURE SP_IM_PRODUCTO (
 	@PROD_PRE_C      DECIMAL(16,2),
 	@PROD_CANT       INT,
 	@CAT_INT_ID      UNIQUEIDENTIFIER,
-	@PROD_STATUS     BIT
+	@PROD_STATUS     BIT,
+	@PROD_Image		 VARBINARY(MAX)
 )
 AS
 BEGIN
@@ -35,6 +36,7 @@ BEGIN
 			   ,[PROD_CANT]
 			   ,[CAT_INT_ID]
 			   ,[PROD_STATUS]
+			   ,[PROD_IMAGE]
 			   )
 			 VALUES
 			   (
@@ -45,7 +47,8 @@ BEGIN
 					@PROD_PRE_C,
 					@PROD_CANT,
 					@CAT_INT_ID,
-					@PROD_STATUS
+					@PROD_STATUS,
+					@PROD_Image
 			   )
 
 		END
@@ -58,7 +61,8 @@ BEGIN
 					PROD_PRE_C = @PROD_PRE_C,
 					PROD_CANT = @PROD_CANT,
 					CAT_INT_ID = @CAT_INT_ID,
-					PROD_STATUS = @PROD_STATUS
+					PROD_STATUS = @PROD_STATUS,
+					PROD_IMAGE = @PROD_Image
 			  WHERE PROD_INT_ID = @PROD_INT_ID
 
 		  END

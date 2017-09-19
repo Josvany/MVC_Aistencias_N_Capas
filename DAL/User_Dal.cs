@@ -39,7 +39,32 @@ namespace DAL
             }
             return objUser;
         }
-        
+
+
+        public static User_Entity Listar(string Uselogin, string Usepass)
+        {
+            var objUser = new User_Entity();
+            try
+            {
+                //var dt = Conexion.GDatos.TraerDataTable("",idCat);
+                DataTable dt = Conexion.GDatos.TraerDataTable("SP_Listar", "TBL_USER");
+                var row = (from User in dt.AsEnumerable()
+                           where User.Field<string>("USE_LOGIN") == Uselogin && User.Field<string>("USE_PASS") == Usepass
+                           select User).ToList();
+                if (row.Count > 0)
+                {
+                    objUser.Use_Login = (string)row[0].ItemArray[2];
+                    //objCat.Typ_Use_Name = row[0].ItemArray[1].ToString();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return objUser;
+        }
+
         public static bool Create(User_Entity Objuser)
         {
             bool flag = false;

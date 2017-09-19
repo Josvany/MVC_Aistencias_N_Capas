@@ -16,13 +16,13 @@ namespace Entity
         public Guid User_Int_Id { get; set; }
 
         public Guid Use_Inf_Int_Id { get; set; }
-        [Required(ErrorMessage = "Ingresar ")]
+        [Required(ErrorMessage = "Ingresar Usuario")]
         [Display(Name = "Nombre de Usuario")]
         public string Use_Login { get; set; }
+        [Required(ErrorMessage ="Ingresar Contraseña")]
         [Display(Name = "Contraseña")]
         [DataType(DataType.Password)]
         public string Use_Pass { get; set; }
-
         [Display(Name = "Confirmar Contrañena")]
         [Compare("Use_Pass", ErrorMessage = "Favor confirmar Contraseña")]
         [DataType(DataType.Password)]
