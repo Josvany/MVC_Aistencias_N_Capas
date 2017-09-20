@@ -41,8 +41,9 @@ namespace DAL
         }
 
 
-        public static User_Entity Listar(string Uselogin, string Usepass)
+        public static bool Listar(string Uselogin, string Usepass)
         {
+            bool flag = false;
             var objUser = new User_Entity();
             try
             {
@@ -54,6 +55,7 @@ namespace DAL
                 if (row.Count > 0)
                 {
                     objUser.Use_Login = (string)row[0].ItemArray[2];
+                    flag = true;
                     //objCat.Typ_Use_Name = row[0].ItemArray[1].ToString();
                 }
             }
@@ -62,7 +64,7 @@ namespace DAL
 
                 throw;
             }
-            return objUser;
+            return flag;
         }
 
         public static bool Create(User_Entity Objuser)

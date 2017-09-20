@@ -306,6 +306,7 @@
     <Content Include="Views\TypeUser\Index.cshtml" />
     <Content Include="Views\TypeUser\Crud.cshtml" />
     <Content Include="Views\Cuenta\Login.cshtml" />
+    <Content Include="Views\Cuenta\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
