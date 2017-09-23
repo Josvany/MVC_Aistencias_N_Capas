@@ -72,6 +72,7 @@ namespace DAL
             bool flag = false;
             try
             {
+                Conexion.IniciarSesion();
                 Conexion.GDatos.Ejecutar("SP_IM_USER", Objuser.User_Int_Id, Objuser.Use_Inf_Int_Id, Objuser.Use_Login, Objuser.Use_Pass, Objuser.Rol_Int_Id, Objuser.Use_Status);
                 flag = true;
             }

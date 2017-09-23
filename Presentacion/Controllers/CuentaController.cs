@@ -127,5 +127,12 @@ namespace Presentacion.Controllers
         {
             return View();
         }
+
+        public ActionResult RegistroCreate(User_Entity objUser)
+        {
+            var result = User_BLL.Create(objUser);
+
+            return null;
+        }
     }
 }

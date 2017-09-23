@@ -24,15 +24,13 @@ namespace Entity
         [DataType(DataType.Password)]
         public string Use_Pass { get; set; }
         [Display(Name = "Confirmar Contrañena")]
-        [Compare("Use_Pass", ErrorMessage = "Favor confirmar Contraseña")]
+        [Compare("Use_Pass", ErrorMessage = "Las Contraseñas deben coincidir")]
         [DataType(DataType.Password)]
         public string Use_Confirm_Pass { get; set; }
-
         [Display(Name = "Estado")]
         public bool Use_Status { get; set; }
         [Display(Name = "Rol")]
         public Guid Rol_Int_Id { get; set; }
-
         public Rol_Entity Rol_Entity { get; set; }
     }
 }
