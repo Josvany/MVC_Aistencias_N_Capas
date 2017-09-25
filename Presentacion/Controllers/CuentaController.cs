@@ -162,6 +162,8 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult Informacion(User_Info_Entity objUseInf)
         {
+            var n = Guid.NewGuid();
+
             var result = Use_Inf_Bll.Create(objUseInf);
 
             if (!result)

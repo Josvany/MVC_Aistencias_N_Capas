@@ -6,10 +6,10 @@
     var n = Session["Use_Login"];
 }
 
-<h2>Informacion</h2>
-
 <div class="info2">
     <div class="container">
+        <h2>Informacion</h2>
+
         @using (Html.BeginForm("Informacion", "Cuenta", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -19,17 +19,25 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.HiddenFor(model => model.Use_Inf_Int_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Use_Inf_Int_Id, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.HiddenFor(model => model.Use_Inf_Int_Id, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Use_Inf_Int_Id, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Use_Inf_Int_Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Typ_Use_Int_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Typ_Use_Int_id, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Typ_Use_Int_id, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Use_Inf_F_Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Use_Inf_F_Name, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.EditorFor(model => model.Use_Inf_F_Name, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Use_Inf_F_Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -93,7 +101,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.User_Entity.Use_Login, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.User_Entity.Use_Login, new { htmlAttributes = new { @class = "form-control", @Value = n } })
+                        @Html.EditorFor(model => model.User_Entity.Use_Login, new { htmlAttributes = new { @class = "form-control", @Value = @n } })
+
                     </div>
                 </div>
 
@@ -104,13 +113,12 @@
                 </div>
             </div>
         }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     </div>
 </div>
-
-@*<div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
