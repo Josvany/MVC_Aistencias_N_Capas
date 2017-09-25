@@ -48,6 +48,7 @@
     <Compile Include="TurnosBLL.cs" />
     <Compile Include="Type_User_BLL.cs" />
     <Compile Include="User_BLL.cs" />
+    <Compile Include="Use_Inf_Bll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

@@ -13,7 +13,7 @@ namespace Presentacion.Controllers
 {
     public class CuentaController : Controller
     {
-        bool newUser = false;
+
         public CuentaController()
         {
 
@@ -25,16 +25,16 @@ namespace Presentacion.Controllers
             {
                 if (this.Request.IsAuthenticated)
                 {
-               
+
                     return this.RedirectToLocal(returnUrl);
                 }
             }
             catch (Exception ex)
             {
-                
+
                 Console.Write(ex);
             }
-            
+
             return this.View();
         }
 
@@ -48,9 +48,9 @@ namespace Presentacion.Controllers
                 var loginInfo = User_BLL.Listar(model.Use_Login, model.Use_Pass);
 
                 if (loginInfo)
-                {                    
+                {
                     this.SignInUser(model.Use_Login, false);
-
+                    Session["Use_Login"] = model.Use_Login;
                     return this.RedirectToLocal(returnUrl);
                 }
                 else
@@ -63,12 +63,11 @@ namespace Presentacion.Controllers
             {
 
             }
-            return null;
+            return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult Salir()
         {
             try
             {
@@ -82,7 +81,6 @@ namespace Presentacion.Controllers
             }
             return this.RedirectToAction("Index", "Home");
         }
-
         private void SignInUser(string username, bool isPersistent)
         {
             var claims = new List<Claim>();
@@ -103,7 +101,6 @@ namespace Presentacion.Controllers
                 throw ex;
             }
         }
-
         private ActionResult RedirectToLocal(string returnUrl)
         {
             try
@@ -121,8 +118,6 @@ namespace Presentacion.Controllers
 
             return this.RedirectToAction("Index", "Home");
         }
-
-
         public ActionResult Registro()
         {
             return View();
@@ -131,8 +126,54 @@ namespace Presentacion.Controllers
         public ActionResult RegistroCreate(User_Entity objUser)
         {
             var result = User_BLL.Create(objUser);
+            if (!result)
+            {
+                ModelState.AddModelError(string.Empty, "Ha ocurrido un problema");
+            }
+            else
+            {
+                var objLogin = new User_Entity();
+                objLogin.Use_Login = objUser.Use_Login;
+                objLogin.Use_Pass = objUser.Use_Pass;
+                Session["Use_Login"] = objUser.Use_Login;
+                return Login(objLogin, "~/Cuenta/Informacion");
+            }
 
-            return null;
+            return Redirect("~/Cuenta/Informacion");
         }
+
+        //[HttpGet]
+        public ActionResult Informacion(string use_login)
+        {
+            var resul = User_BLL.Listar(use_login);
+            Session["Use_Login"] = use_login;
+            if (resul.Count > 0)
+            {
+                Guid Use_Int_Id = new Guid(resul[0].Use_Inf_Int_Id.ToString());
+                if (Use_Int_Id != Guid.Empty)
+                {
+                    return View(Use_Inf_Bll.Listar(Use_Int_Id));
+                }
+            }
+
+            return View(new User_Info_Entity());
+        }
+
+        [HttpPost]
+        public ActionResult Informacion(User_Info_Entity objUseInf)
+        {
+            var result = Use_Inf_Bll.Create(objUseInf);
+
+            if (!result)
+            {
+                ModelState.AddModelError(string.Empty, "Ha ocurrido un problema");
+            }
+            else
+            {
+                return View();
+            }
+            return View();
+        }
+
     }
 }

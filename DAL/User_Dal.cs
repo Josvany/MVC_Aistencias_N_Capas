@@ -40,6 +40,43 @@ namespace DAL
             return objUser;
         }
 
+        public static List<User_Entity> Listar(string use_login)
+        {
+            var objUser = new List<User_Entity>();
+
+            Conexion.IniciarSesion();
+            try
+            {
+                //var dt = Conexion.GDatos.TraerDataTable("",idCat);
+                DataTable dt = Conexion.GDatos.TraerDataTable("SP_Listar", "TBL_USER");
+                var row = (from User in dt.AsEnumerable()
+                           where User.Field<string>("USE_LOGIN") == use_login
+                           select User).ToList();
+                if (row.Count > 0)
+                {
+                    //objUser.User_Int_Id = (Guid)row[0].ItemArray[0];
+                    foreach (DataRow item in row)
+                    {
+                        objUser.Add(new User_Entity
+                        {
+                            User_Int_Id = (Guid)(item["USE_INT_ID"]),
+                            Use_Inf_Int_Id = item["USE_INF_INT_ID"] == DBNull.Value ? Guid.Empty : (Guid)item["USE_INF_INT_ID"],
+                            Use_Login = item["USE_LOGIN"].ToString(),
+                            Use_Pass = item["USE_PASS"].ToString(),
+                            Rol_Int_Id = item["ROL_INT_ID"] == DBNull.Value ? Guid.Empty : (Guid)item["ROL_INT_ID"],
+                            Use_Status = (bool)item["USE_STATUS"]
+                        });
+                    }
+                    //objCat.Typ_Use_Name = row[0].ItemArray[1].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objUser;
+        }
+
 
         public static bool Listar(string Uselogin, string Usepass)
         {
@@ -54,6 +91,7 @@ namespace DAL
                            select User).ToList();
                 if (row.Count > 0)
                 {
+                    //objUser.User_Int_Id = (Guid)row[0].ItemArray[0];
                     objUser.Use_Login = (string)row[0].ItemArray[2];
                     flag = true;
                     //objCat.Typ_Use_Name = row[0].ItemArray[1].ToString();

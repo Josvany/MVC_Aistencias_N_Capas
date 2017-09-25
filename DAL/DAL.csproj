@@ -54,6 +54,7 @@
     <Compile Include="TasaCambioDAL.cs" />
     <Compile Include="Type_User_Dal.cs" />
     <Compile Include="User_Dal.cs" />
+    <Compile Include="Use_Inf_Dal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capa_Conexion\Capa_Conexion.csproj">
