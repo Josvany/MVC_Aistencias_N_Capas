@@ -2,8 +2,12 @@
 
 <ul class="dropdown-menu" role="menu">
     <li>@Html.ActionLink("Todas", "Index", "Categorias", null, new { @class = "second" })</li>
-    @foreach (var item in Model)
+
+    @if (Model != null)
     {
-        <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
+        foreach (var item in Model)
+        {
+            <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
+        }
     }
 </ul>

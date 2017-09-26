@@ -31,7 +31,7 @@ namespace Capa_Conexion
 
         public static bool IniciarSesion()
         {
-            return IniciarSesion(@".", "DB_Farmacia", "sa", "josvany");
+            return IniciarSesion(@"TXNICARAGUA\SQLEXPRESS", "DB_Farmacia", "sa", "josvany");
         }
 
         //mando a cerrar cesion

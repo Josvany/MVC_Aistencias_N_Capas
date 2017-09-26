@@ -309,6 +309,8 @@
     <Content Include="Views\Cuenta\Registro.cshtml" />
     <Content Include="Views\Cuenta\Informacion.cshtml" />
     <Content Include="Views\Shared\_Categorias_Partial.cshtml" />
+    <Content Include="Views\Categorias\New.cshtml" />
+    <Content Include="Views\Shared\_Layout_View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

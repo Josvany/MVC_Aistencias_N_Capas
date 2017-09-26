@@ -40,9 +40,9 @@ namespace DAL
             return objCat;
         }
 
-        public static Categorias_Entity Listar(Guid IdCat)
+        public static List<Categorias_Entity> Listar(Guid IdCat)
         {
-            var objCat = new Categorias_Entity();
+            var objCat = new List<Categorias_Entity>();
             try
             {
                 //var dt = Conexion.GDatos.TraerDataTable("",idCat);
@@ -53,10 +53,13 @@ namespace DAL
                 if (row.Count > 0)
                 {
 
-                    objCat.CatIntIdValue = (Guid)row[0].ItemArray[0];
-                    objCat.CatNombreValue = row[0].ItemArray[1].ToString();
-                    objCat.CatCodigoValue = row[0].ItemArray[2].ToString();
-                    objCat.CatStatusValue = (bool)row[0].ItemArray[3];
+                    objCat.Add(new Categorias_Entity
+                    {
+                        CatIntIdValue = (Guid)row[0].ItemArray[0],
+                        CatNombreValue = row[0].ItemArray[1].ToString(),
+                        CatCodigoValue = row[0].ItemArray[2].ToString(),
+                        CatStatusValue = (bool)row[0].ItemArray[3]
+                    });
 
                 }
             }
@@ -71,10 +74,10 @@ namespace DAL
         public static bool Create(Categorias_Entity objCat)
         {
             bool flag = false;
-            
+
             try
             {
-                Conexion.GDatos.Ejecutar("SP_IM_Categoria", objCat.CatIntIdValue, objCat.CatNombreValue, objCat.CatCodigoValue,objCat.CatStatusValue);
+                Conexion.GDatos.Ejecutar("SP_IM_Categoria", objCat.CatIntIdValue, objCat.CatNombreValue, objCat.CatCodigoValue, objCat.CatStatusValue);
                 flag = true;
             }
             catch (Exception)
