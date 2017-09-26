@@ -45,5 +45,58 @@ namespace DAL
             }
             return objProd;
         }
+
+
+        public static Product_Entity Listar(Guid idProd)
+        {
+            var objPro = new Product_Entity();
+            try
+            {
+                //var dt = Conexion.GDatos.TraerDataTable("",idCat);
+                DataTable dt = Conexion.GDatos.TraerDataTable("SP_Listar", "TBL_PRODUCTO");
+                var row = (from Pro in dt.AsEnumerable()
+                           where Pro.Field<Guid>("PROD_INT_ID") == idProd
+                           select Pro).ToList();
+                if (row.Count > 0)
+                {
+                    objPro.Prod_Int_Id = (Guid)row[0].ItemArray[0];
+                    objPro.Prod_Name = row[0].ItemArray[1].ToString();
+                    objPro.Prod_System_Name = row[0].ItemArray[2].ToString();
+                    objPro.Prod_Sale_P = (decimal)row[0].ItemArray[3];
+                    objPro.Prod_P_C = (decimal)row[0].ItemArray[4];
+                    objPro.Prod_Cant = (int)row[0].ItemArray[5];
+                    objPro.Cat_Int_Id = (Guid)row[0].ItemArray[6];
+                    objPro.Prod_Status = (bool)row[0].ItemArray[7];
+                    objPro.Prod_Img = (byte[])row[0].ItemArray[8];
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return objPro;
+        }
+
+
+        public static bool Create(Product_Entity ObjProduct)
+        {
+            bool flag = false;
+
+            try
+            {
+                Conexion.GDatos.Ejecutar("SP_IM_PRODUCTO",ObjProduct.Prod_Int_Id,ObjProduct.Prod_Name,ObjProduct.Prod_System_Name,ObjProduct.Prod_Sale_P,ObjProduct.Prod_P_C,ObjProduct.Prod_Cant,
+                                         ObjProduct.Cat_Int_Id,ObjProduct.Prod_Status,ObjProduct.Prod_Img);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
+        }
     }
 }

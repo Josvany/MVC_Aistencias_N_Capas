@@ -201,6 +201,7 @@
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TasaCambioController.cs" />
     <Compile Include="Controllers\TypeUserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -309,6 +310,8 @@
     <Content Include="Views\Cuenta\Registro.cshtml" />
     <Content Include="Views\Cuenta\Informacion.cshtml" />
     <Content Include="Views\Shared\_Categorias_Partial.cshtml" />
+    <Content Include="Views\Product\Crud.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Categorias\New.cshtml" />
     <Content Include="Views\Shared\_Layout_View.cshtml" />
   </ItemGroup>
