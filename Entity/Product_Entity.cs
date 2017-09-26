@@ -32,6 +32,7 @@ namespace Entity
         public int Prod_Cant { get; set; }
 
         [Display(Name = "Categoria")]
+        [Required(ErrorMessage = "Ingresar Categoria")]
         public Guid Cat_Int_Id { get; set; }
 
         [Display(Name = "Estado")]
