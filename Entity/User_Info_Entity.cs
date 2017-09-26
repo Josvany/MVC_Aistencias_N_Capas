@@ -9,11 +9,11 @@ namespace Entity
 {
     public class User_Info_Entity
     {
-        public User_Info_Entity()
-        {
-            Type_User_Entity = new Type_User_Entity();
-            User_Entity = new User_Entity();
-        }
+        //public User_Info_Entity()
+        //{
+        //    Type_User_Entity = new Type_User_Entity();
+        //    User_Entity = new User_Entity();
+        //}
         public Guid Use_Inf_Int_Id { get; set; }
         public Guid Typ_Use_Int_id { get; set; }
 
@@ -49,8 +49,8 @@ namespace Entity
         [Display(Name = "Email")]
         public string Use_Inf_Email { get; set; }
 
-        public Type_User_Entity Type_User_Entity { get; set; }
-        public User_Entity User_Entity { get; set; }
+        //public Type_User_Entity Type_User_Entity { get; set; }
+        //public User_Entity User_Entity { get; set; }
 
     }
 }

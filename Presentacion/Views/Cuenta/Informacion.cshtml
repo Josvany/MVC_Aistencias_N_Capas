@@ -3,34 +3,28 @@
 @{
     ViewBag.Title = "Informacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var n = Session["Use_Login"];
 }
-
 <div class="info2">
     <div class="container">
-        <h2>Informacion</h2>
-
-        @using (Html.BeginForm("Informacion", "Cuenta", FormMethod.Post))
+        @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>User_Info_Entity</h4>
+                <h4 style="text-align:center;">Información</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Use_Inf_Int_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(model => model.Use_Inf_Int_Id, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Use_Inf_Int_Id, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Use_Inf_Int_Id, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Use_Inf_Int_Id, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Typ_Use_Int_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(model => model.Typ_Use_Int_id, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Typ_Use_Int_id, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Typ_Use_Int_id, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Typ_Use_Int_id, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
@@ -99,26 +93,20 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.User_Entity.Use_Login, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.User_Entity.Use_Login, new { htmlAttributes = new { @class = "form-control", @Value = @n } })
-
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Guardar" class="btn btn-default success" />
                     </div>
                 </div>
             </div>
         }
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     </div>
 </div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

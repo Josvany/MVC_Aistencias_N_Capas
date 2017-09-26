@@ -145,6 +145,10 @@ namespace Presentacion.Controllers
         //[HttpGet]
         public ActionResult Informacion(string use_login)
         {
+            if (use_login == null)
+            {
+                return Redirect("~/Home/Index");
+            }
             var resul = User_BLL.Listar(use_login);
             Session["Use_Login"] = use_login;
             if (resul.Count > 0)
@@ -162,9 +166,9 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult Informacion(User_Info_Entity objUseInf)
         {
-            var n = Guid.NewGuid();
-
-            var result = Use_Inf_Bll.Create(objUseInf);
+            var Use_Login = Session["Use_Login"];
+            var result = Use_Inf_Bll.Create(objUseInf, Use_Login.ToString());
+            
 
             if (!result)
             {

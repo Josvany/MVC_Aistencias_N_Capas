@@ -1,6 +1,4 @@
-﻿@*@model IEnumerable<Entity.Categorias_Entity>*@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Farmacia La Chiqui</title>
@@ -37,14 +35,7 @@
                     <li class="active">@Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "active" })</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorias<span class="caret"></span></a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Todas", "Index", "Categorias", null, new { @class = "second" })</li>
-                            @*@foreach (var item in Model)
-                            {
-                                <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
-                            }*@
-                        </ul>
+                        @Html.Partial("_Categorias_Partial")
                     </li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>

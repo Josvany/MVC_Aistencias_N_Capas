@@ -11,14 +11,14 @@ namespace BLL
     public class Use_Inf_Bll
     {
 
-        public static List<User_Info_Entity> Listar(Guid Use_Inf_Int_Id)
+        public static User_Info_Entity Listar(Guid Use_Inf_Int_Id)
         {
             return Use_Inf_Dal.Listar(Use_Inf_Int_Id);
         }
 
-        public static bool Create(User_Info_Entity ObjuserInf)
+        public static bool Create(User_Info_Entity ObjuserInf,string Use_Login)
         {
-            return Use_Inf_Dal.Create(ObjuserInf);
+            return Use_Inf_Dal.Create(ObjuserInf,Use_Login);
         }
     }
 }
