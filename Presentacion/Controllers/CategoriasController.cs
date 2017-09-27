@@ -27,45 +27,14 @@ namespace Presentacion.Controllers
         // GET: Categorias/Details/5
         public ActionResult Crud(Guid idCat)
         {
-            if (idCat == Guid.Empty)
-            {
-                var objCat = new List<Categorias_Entity>();
-
-                return View();
-            }
-            else
-            {
-                return View(CategoriasBLL.Listar(idCat));
-            }
+            return View(idCat == Guid.Empty ? new Categorias_Entity() : CategoriasBLL.Listar(idCat));
         }
 
-        public ActionResult New()
-        {
-            return View();
-        }
+
 
         // GET: Categorias/Create
         [HttpPost]
-        public ActionResult Create(List<Categorias_Entity> objCatList)
-        {
-            var objCat = new Categorias_Entity();
-            objCat.CatIntIdValue = objCatList[0].CatIntIdValue;
-            objCat.CatNombreValue = objCatList[0].CatNombreValue;
-            objCat.CatCodigoValue = objCatList[0].CatCodigoValue;
-            objCat.CatStatusValue = objCatList[0].CatStatusValue;
-
-
-            var result = CategoriasBLL.Create(objCat);
-
-            if (!result)
-            {
-                return View("~/Views/Shared/Error.cshtml");
-            }
-
-            return Redirect("~/Categorias/Index");
-        }
-        [HttpPost]
-        public ActionResult Creates(Categorias_Entity objCat)
+        public ActionResult Create(Categorias_Entity objCat)
         {
             var result = CategoriasBLL.Create(objCat);
 

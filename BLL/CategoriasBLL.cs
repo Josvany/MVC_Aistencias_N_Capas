@@ -14,7 +14,7 @@ namespace BLL
         {
             return CategoriaDat.Listar();
         }
-        public static List<Categorias_Entity> Listar(Guid IdCat)
+        public static Categorias_Entity Listar(Guid IdCat)
         {
             return CategoriaDat.Listar(IdCat);
         }

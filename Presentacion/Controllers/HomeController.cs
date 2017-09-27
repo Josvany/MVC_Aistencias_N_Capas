@@ -12,21 +12,20 @@ namespace Presentacion.Controllers
     {
         public ActionResult Index()
         {
-            return View(CategoriasBLL.Listar());
+            Session["Categorias"] = CategoriasBLL.Listar();
+            return base.View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View(CategoriasBLL.Listar());
+            //ViewBag.Categorias = CategoriasBLL.Listar();
+            return View(/*CategoriasBLL.Listar()*/);
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View(CategoriasBLL.Listar());
+            //ViewBag.Categorias = CategoriasBLL.Listar();
+            return View(/*CategoriasBLL.Listar()*/);
         }
     }
 }

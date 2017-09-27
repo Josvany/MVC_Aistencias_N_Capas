@@ -1,13 +1,23 @@
-﻿@model IEnumerable<Entity.Categorias_Entity>
+﻿@*@model IEnumerable<Entity.Categorias_Entity>*@
+
+@{
+//List<Entity.Categorias_Entity> Cat = ViewBag.Categorias;
+    var Cat = (List<Entity.Categorias_Entity>)Session["Categorias"];
+}
 
 <ul class="dropdown-menu" role="menu">
     <li>@Html.ActionLink("Todas", "Index", "Categorias", null, new { @class = "second" })</li>
 
-    @if (Model != null)
+    @if (Session["Categorias"] != null)
     {
-        foreach (var item in Model)
+        foreach (var item in Cat)
         {
-            <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
+            if (item.CatStatusValue)
+            {
+                <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
+            }
         }
     }
+
+
 </ul>
