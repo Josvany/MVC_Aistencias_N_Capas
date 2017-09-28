@@ -318,6 +318,7 @@
     <Content Include="Views\Product\Crud.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_View.cshtml" />
+    <Content Include="Views\Product\SearchProd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
