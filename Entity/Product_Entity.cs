@@ -10,8 +10,12 @@ namespace Entity
 {
     public class Product_Entity
     {
-
+        public Product_Entity()
+        {
+            Categorias_Entity = new Categorias_Entity();
+        }
         public Guid Prod_Int_Id { get; set; }
+
         [Display(Name = "Nombre Producto")]
         [Required(ErrorMessage = "Ingresar nombre")]
         public string Prod_Name { get; set; }
@@ -34,10 +38,13 @@ namespace Entity
         [Display(Name = "Categoria")]
         [Required(ErrorMessage = "Ingresar Categoria")]
         public Guid Cat_Int_Id { get; set; }
+        public string Cat_Name { get; set; }
 
         [Display(Name = "Estado")]
         public bool Prod_Status { get; set; }
 
         public byte[] Prod_Img { get; set; }
+
+        public Categorias_Entity Categorias_Entity { get; set; }
     }
 }

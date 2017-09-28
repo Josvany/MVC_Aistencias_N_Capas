@@ -1,20 +1,21 @@
 ﻿@model Entity.Product_Entity
 
 @{
-//ViewBag.Title = "Crud";
+    //ViewBag.Title = "Crud";
+    List<Entity.Categorias_Entity> Cate = ViewBag.Categorias;
 }
 
 <script src="~/Scripts/ckeditor.js"></script>
 <script src="~/Scripts/jquery.js"></script>
 
 <script type="text/javascript">
-        function fileCheck(obj) {
-            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
-            if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-                alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
-                $('#ImageData').attr({ value: '' });
-            }
+    function fileCheck(obj) {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+        if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+            $('#ImageData').attr({ value: '' });
         }
+    }
 </script>
 
 <div class="infoPro">
@@ -79,8 +80,14 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Cat_Int_Id, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Cat_Int_Id, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Cat_Int_Id, "", new { @class = "text-danger" })
+                        <select name="Cat_Int_Id" class="form-control">
+                            @foreach (var CatIntId in Cate)
+                                {
+                                    <option @(CatIntId.CatIntIdValue == Model.Cat_Int_Id ? "selected" : "") value="@CatIntId.CatIntIdValue">
+                                        @CatIntId.CatNombreValue
+                                    </option>
+                                }
+                        </select>
                     </div>
                 </div>
 
@@ -113,6 +120,6 @@
 </div>
 
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

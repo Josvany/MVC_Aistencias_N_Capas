@@ -17,6 +17,7 @@ table.dataTable {
 table.dataTable thead th,
 table.dataTable tfoot th {
   font-weight: bold;
+  text-align:center;
 }
 table.dataTable thead th,
 table.dataTable thead td {
@@ -39,6 +40,7 @@ table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
   cursor: pointer;
   *cursor: hand;
+  background-color:#2e6e9e;
 }
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,

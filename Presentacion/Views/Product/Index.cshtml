@@ -64,16 +64,19 @@
                             @Html.DisplayFor(modelItem => item.Prod_Cant)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Cat_Int_Id)
+                            @Html.DisplayFor(modelItem => item.Cat_Name)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Prod_Status)
                         </td>
                         <td>
+                            
+                            <img src="~/Product/RetrieveImage?Prod_Int_Id=@item.Prod_Int_Id" alt="" height=100 width=200 />
+                            @*<img src="/Content/MostrarImage/@item.Prod_Int_Id" alt="" height=100 width=200 />*@
                             @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                            @Html.ActionLink("Editar", "Crud", new { idProd = item.Prod_Int_Id }, new { @class = "alert alert-warning" })
+                            @*@Html.ActionLink("Editar", "Crud", new { idProd = item.Prod_Int_Id }, new { @class = "alert alert-warning" })*@
                         </td>
                     </tr>
                 }

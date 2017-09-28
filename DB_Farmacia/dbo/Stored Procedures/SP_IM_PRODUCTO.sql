@@ -4,7 +4,7 @@
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[SP_IM_PRODUCTO] (
-    @PROD_INT_ID    UNIQUEIDENTIFIER = NULL,
+    @PROD_INT_ID    UNIQUEIDENTIFIER,
     @PROD_NOMBRE     VARCHAR(50),
     @PROD_SYS_NAME   VARCHAR(50),
 	@PROD_PRE_V      DECIMAL(16,2),
