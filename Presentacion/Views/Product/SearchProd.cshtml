@@ -4,75 +4,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="info2">
     <div class="container">
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_Int_Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_System_Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_Sale_P)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_P_C)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_Cant)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cat_Int_Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cat_Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prod_Status)
-                </th>
-                <th></th>
-            </tr>
-
+        <section>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_Int_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_System_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_Sale_P)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_P_C)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_Cant)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cat_Int_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cat_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prod_Status)
-                    </td>
-                    <td></td>
-                </tr>
-            }
+                <article>
 
-        </table>
+                    <img src="~/Product/RetrieveImage?Prod_Int_Id=@item.Prod_Int_Id" alt="" height=100 width=200 />
+
+                    @Html.DisplayFor(modelItem => item.Prod_Name)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Prod_Sale_P)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Prod_Cant)
+                </article>
+            }
+        </section>
     </div>
 </div>

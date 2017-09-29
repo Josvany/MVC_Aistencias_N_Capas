@@ -20,8 +20,14 @@ namespace Presentacion.Controllers
         public ActionResult Crud(Guid idprod)
         {
             ViewBag.Categorias = CategoriasBLL.Listar();
-            return View(new Product_Entity());
+            return View(idprod == Guid.Empty ? new Product_Entity() : Product_BLL.Listar(idprod));
         }
+
+        public ActionResult SearchProd(Guid idcat)
+        {
+            return View(Product_BLL.ListarByCat(idcat));
+        }
+
         [Route("Create")]
         [HttpPost]
         public ActionResult Create(Product_Entity objProduct)

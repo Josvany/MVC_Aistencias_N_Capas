@@ -71,11 +71,10 @@
                         </td>
                         <td>
                             
-                            <img src="~/Product/RetrieveImage?Prod_Int_Id=@item.Prod_Int_Id" alt="" height=100 width=200 />
-                            @*<img src="/Content/MostrarImage/@item.Prod_Int_Id" alt="" height=100 width=200 />*@
-                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            @*<img src="~/Product/RetrieveImage?Prod_Int_Id=@item.Prod_Int_Id" alt="" height=100 width=200 />*@
+                            @Html.ActionLink("Editar", "Crud", new { idprod = item.Prod_Int_Id }, new { @class = "alert alert-warning" })
+                            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                             @*@Html.ActionLink("Editar", "Crud", new { idProd = item.Prod_Int_Id }, new { @class = "alert alert-warning" })*@
                         </td>
                     </tr>

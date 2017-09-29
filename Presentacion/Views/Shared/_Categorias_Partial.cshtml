@@ -1,20 +1,22 @@
 ﻿@*@model IEnumerable<Entity.Categorias_Entity>*@
 
 @{
-//List<Entity.Categorias_Entity> Cat = ViewBag.Categorias;
+    //List<Entity.Categorias_Entity> Cat = ViewBag.Categorias;
     var Cat = (List<Entity.Categorias_Entity>)Session["Categorias"];
 }
 
 <ul class="dropdown-menu" role="menu">
-    <li>@Html.ActionLink("Todas", "Index", "Categorias", null, new { @class = "second" })</li>
-
+    @*<li>@Html.ActionLink("Todas", "Index", "Categorias", null, new { @class = "second" })</li>*@
     @if (Session["Categorias"] != null)
     {
         foreach (var item in Cat)
         {
             if (item.CatStatusValue)
             {
-                <li><a href="#" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a></li>
+                <li>
+                    @*<a href="" class="li second">@Html.DisplayFor(modelItem => item.CatNombreValue)</a>*@
+                    @Html.ActionLink(item.CatNombreValue, "SearchProd", "Product", new { idcat = item.CatIntIdValue }, new { @class = "li second" })
+                </li>
             }
         }
     }

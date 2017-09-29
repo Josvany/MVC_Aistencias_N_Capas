@@ -18,6 +18,14 @@ namespace BLL
             return Product_Dal.Listar();
         }
 
+        public static List<Product_Entity> ListarByCat(Guid idcat)
+        {
+            return Product_Dal.ListarByCat(idcat);
+        }
+        public static Product_Entity Listar(Guid idProd)
+        {
+            return Product_Dal.Listar(idProd);
+        }
         public static bool Create(Product_Entity objProduct)
         {
             return Product_Dal.Create(objProduct);
