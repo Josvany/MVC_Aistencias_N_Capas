@@ -37,7 +37,25 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
   padding: 10px;
   margin: 25px 15px 25px 0; }
 
+.info {
+  background: url("../images/imgfondo1.jpg") no-repeat center top;
+  color: #fff;
+  background-size: cover;
+  background-attachment: fixed !important;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 20px;
+  filter: alpha(opacity=50);
+  /* For IE8 and earlier */ }
+
 .info1 {
+  opacity: 0.5;
   background: url("../images/imgfondo1.jpg") no-repeat center top;
   color: #fff;
   background-size: cover;
@@ -106,5 +124,31 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 
 .dataTables_filter input {
   border-radius: 8px; }
+
+.container {
+  clear: both; }
+
+section {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: darkgrey; }
+
+section article {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 30%;
+  height: 260px;
+  float: left;
+  margin-left: 110px;
+  color: black; }
+
+img {
+  margin: 0 auto;
+  width: 50%;
+  height: 140px; }
 
 /*# sourceMappingURL=Site.css.map */

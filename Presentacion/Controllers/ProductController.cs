@@ -22,6 +22,18 @@ namespace Presentacion.Controllers
             ViewBag.Categorias = CategoriasBLL.Listar();
             return View(idprod == Guid.Empty ? new Product_Entity() : Product_BLL.Listar(idprod));
         }
+        [HttpPost]
+        public ActionResult CreateFactu(List<TEM_PED> objTem, Pago_Entity objpago)
+        {
+            return null;
+        }
+
+        public ActionResult ViewToCar(string use_login)
+        {
+            use_login = (Session["Use_Login"] == null? "N" : Session["Use_Login"].ToString());
+            ViewBag.Pago = PagoBll.Listar();
+            return View(Product_BLL.Listar(use_login));
+        }
 
         public ActionResult SearchProd(Guid idcat)
         {
@@ -35,6 +47,21 @@ namespace Presentacion.Controllers
             HttpPostedFileBase file = Request.Files["ImageData"];
             objProduct.Prod_Img = ConvertToBytes(file);
             var result = Product_BLL.Create(objProduct);
+
+            if (!result)
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
+
+            return Redirect("~/Product/Index");
+        }
+
+        [Route("CreateTem")]
+        [HttpPost]
+        public ActionResult CreateTem(TEM_PED objTem)
+        {
+           
+            var result = Product_BLL.CreateTem(objTem);
 
             if (!result)
             {
@@ -64,16 +91,20 @@ namespace Presentacion.Controllers
             return img;
         }
 
-        public ActionResult MostrarImage(Guid prod)
+        public ActionResult Add_Product(Guid prod_id, string name, string use_login, decimal p, Guid idcat)
         {
-            //if (Img != null)
-            //{
-            //    return File(Img, "image/jpg");
-            //}
-            //else
-            //{
-            return null;
-            //}
+            var objTemPro = new  Entity.TEM_PED();
+
+            objTemPro.Prod_Int_Id = prod_id;
+            objTemPro.Name_Prod = name;
+            objTemPro.Precio_Prod = p;
+            objTemPro.Cat_int_id = idcat;
+
+            if (use_login == null)
+            {
+                return Redirect("~/Cuenta/Login");
+            }
+            return View(objTemPro);
         }
 
         public byte[] ConvertToBytes(HttpPostedFileBase image)

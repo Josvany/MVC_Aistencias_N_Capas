@@ -23,19 +23,20 @@ namespace DAL
                 var dtCat = Conexion.GDatos.TraerDataTable("SP_Listar", "CAT_CATEGORIA");
 
                 var Inner = (from DtPro in dtp.AsEnumerable()
-                            join DtCat in dtCat.AsEnumerable() on DtPro.Field<Guid>("Cat_Int_Id") equals DtCat.Field<Guid>("Cat_Int_Id")
-                            select new {
-                                PROD_INT_ID = DtPro.Field<Guid>("PROD_INT_ID"),
-                                PROD_NOMBRE = DtPro.Field<string>("PROD_NOMBRE"),
-                                PROD_SYS_NAME = DtPro.Field<string>("PROD_SYS_NAME"),
-                                PROD_PRE_V = DtPro.Field<decimal>("PROD_PRE_V"),
-                                PROD_PRE_C = DtPro.Field<decimal>("PROD_PRE_C"),
-                                PROD_CANT = DtPro.Field<int>("PROD_CANT"),
-                                CAT_INT_ID = DtPro.Field<Guid>("CAT_INT_ID"),
-                                PROD_STATUS = DtPro.Field<bool>("PROD_STATUS"),
-                                PROD_IMAGE = DtPro.Field<byte[]>("PROD_IMAGE"),
-                                Name = DtCat.Field<string>("CAT_NOMBRE")
-                            }).ToList();
+                             join DtCat in dtCat.AsEnumerable() on DtPro.Field<Guid>("Cat_Int_Id") equals DtCat.Field<Guid>("Cat_Int_Id")
+                             select new
+                             {
+                                 PROD_INT_ID = DtPro.Field<Guid>("PROD_INT_ID"),
+                                 PROD_NOMBRE = DtPro.Field<string>("PROD_NOMBRE"),
+                                 PROD_SYS_NAME = DtPro.Field<string>("PROD_SYS_NAME"),
+                                 PROD_PRE_V = DtPro.Field<decimal>("PROD_PRE_V"),
+                                 PROD_PRE_C = DtPro.Field<decimal>("PROD_PRE_C"),
+                                 PROD_CANT = DtPro.Field<int>("PROD_CANT"),
+                                 CAT_INT_ID = DtPro.Field<Guid>("CAT_INT_ID"),
+                                 PROD_STATUS = DtPro.Field<bool>("PROD_STATUS"),
+                                 PROD_IMAGE = DtPro.Field<byte[]>("PROD_IMAGE"),
+                                 Name = DtCat.Field<string>("CAT_NOMBRE")
+                             }).ToList();
 
                 foreach (var item in Inner)
                 {
@@ -59,7 +60,50 @@ namespace DAL
                 Conexion.FinalizarSesion();
                 throw;
             }
-            
+
+            return objProd;
+        }
+
+        public static List<TEM_PED> Listar(string use_login)
+        {
+
+            var objProd = new List<TEM_PED>();
+            try
+            {
+                Conexion.IniciarSesion();
+
+                var dttp = Conexion.GDatos.TraerDataTable("SP_Listar", "TBL_TEM_PEDI");
+                var dtProd = Conexion.GDatos.TraerDataTable("SP_Listar", "TBL_PRODUCTO");
+
+                var Inner = (from DtPro in dttp.AsEnumerable()
+                             join DtCat in dtProd.AsEnumerable() on DtPro.Field<Guid>("TEM_PRODUC") equals DtCat.Field<Guid>("PROD_INT_ID")
+                             select new
+                             {
+                                 PROD_INT_ID = DtPro.Field<Guid>("TEM_PRODUC"),
+                                 TEM_LOGIN = DtPro.Field<string>("TEM_USER_LOGIN"),
+                                 PROD_NOMBRE = DtCat.Field<string>("PROD_NOMBRE"),
+                                 TEM_PROD_PRECIO = DtPro.Field<decimal>("TEM_PRECIO"),
+                                 TEM_PROD_CANT = DtPro.Field<int>("TEM_CANT"),
+                             }).ToList();
+
+                foreach (var item in Inner)
+                {
+                    objProd.Add(new TEM_PED
+                    {
+                        Prod_Int_Id = (Guid)(item.PROD_INT_ID),
+                        Name_Prod = item.PROD_NOMBRE.ToString(),
+                        Use_Login = item.TEM_LOGIN.ToString(),
+                        Precio_Prod = (decimal)item.TEM_PROD_PRECIO,
+                        Cant_Prod = (int)item.TEM_PROD_CANT
+                    });
+                }
+            }
+            catch (Exception)
+            {
+                Conexion.FinalizarSesion();
+                throw;
+            }
+
             return objProd;
         }
 
@@ -123,7 +167,6 @@ namespace DAL
             return objProd;
         }
 
-
         public static Product_Entity Listar(Guid idProd)
         {
             var objPro = new Product_Entity();
@@ -156,7 +199,6 @@ namespace DAL
             return objPro;
         }
 
-
         public static bool Create(Product_Entity ObjProduct)
         {
             bool flag = false;
@@ -173,6 +215,28 @@ namespace DAL
             }
 
             return flag;
+        }
+
+        public static bool CreateTem(TEM_PED Objtem)
+        {
+            bool flag = false;
+
+            try
+            {
+                Conexion.GDatos.Ejecutar("SP_IM_TEM", Objtem.Tem_Int_Id, Objtem.Use_Login, Objtem.Prod_Int_Id, Objtem.Cant_Prod, Objtem.Precio_Prod, Objtem.Fecha = DateTime.UtcNow);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return flag;
+        }
+
+        public static bool CreateFactu(List<TEM_PED> objTem, Pago_Entity objpago)
+        {
+            return false;
         }
     }
 }

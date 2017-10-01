@@ -1,16 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@{
+    string use_log = (Session["Use_Login"] == null ? "null" : Session["Use_Login"].ToString());
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("Salir", "Cuenta", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Informacion", "Cuenta", new { use_login = User.Identity.GetUserName() }, htmlAttributes: new { title = "Informacion" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        @Html.AntiForgeryToken()
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Informacion", "Cuenta", new { use_login = User.Identity.GetUserName() }, htmlAttributes: new { title = "Informacion" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+            <li>
+                @if (Session["Use_Login"] != null)
+                {
+                    @Html.ActionLink("Ver Carrito", "ViewToCar", "Product", "ViewToCar", new { use_lo = @use_log })
+                } 
+            </li>
+        </ul>
     }
 }
 else

@@ -49,6 +49,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="EmpleadosDAT.cs" />
+    <Compile Include="PagoDal.cs" />
     <Compile Include="Product_Dal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolDal.cs" />

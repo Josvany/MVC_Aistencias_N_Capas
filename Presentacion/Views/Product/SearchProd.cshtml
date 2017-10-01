@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Entity.Product_Entity objProd = new Entity.Product_Entity();
 }
 
 <div class="info2">
@@ -10,16 +11,44 @@
             @foreach (var item in Model)
             {
                 <article>
-
-                    <img src="~/Product/RetrieveImage?Prod_Int_Id=@item.Prod_Int_Id" alt="" height=100 width=200 />
-
-                    @Html.DisplayFor(modelItem => item.Prod_Name)
+                    <img src="~/Product/RetrieveImage?Prod_Int_Id=@item.Prod_Int_Id" alt="Not Fount" height="100" width="200" />
                     <br />
-                    @Html.DisplayFor(modelItem => item.Prod_Sale_P)
+                    Descripción: @Html.DisplayFor(modelItem => item.Prod_Name)
                     <br />
-                    @Html.DisplayFor(modelItem => item.Prod_Cant)
+                    Precio: @Html.DisplayFor(modelItem => item.Prod_Sale_P)
+                    <br />      
+                    Cantidad disponible: @Html.DisplayFor(modelItem => item.Prod_Cant)
+                    @Html.ActionLink("Agregar", "Add_Product", new { prod_id = item.Prod_Int_Id,name = item.Prod_Name, use_login = Session["Use_Login"], p = item.Prod_Sale_P ,idcat= item.Cat_Int_Id}, new { @class = "btn btn-primary sucess" })
                 </article>
             }
         </section>
     </div>
 </div>
+
+@*<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación de Borrado</h4>
+            </div>
+            <div class="modal-body">
+                <p>Quiere borrar el Empleado '@objProd.Prod_Name'.</p>
+                <p>
+                    <strong>Esta Seguro de Continuar?</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                
+                    <a href="/Empleados/Borrar/@objProd.Prod_Name"
+                       class="btn btn-danger">Si, Borrar el Empleado</a>
+                
+                <button type="button" class="btn btn-success" data-dismiss="modal">
+                    No, Borrar el Empleado
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>*@
+

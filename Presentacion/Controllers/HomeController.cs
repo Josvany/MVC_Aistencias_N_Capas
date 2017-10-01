@@ -10,8 +10,13 @@ namespace Presentacion.Controllers
 {
     public class HomeController : Controller
     {
+        CuentaController ng = new CuentaController();
         public ActionResult Index()
         {
+            //if (Session["Use_Login"] == null)
+            //{
+            //    ng.Salir();
+            //}
             Session["Categorias"] = CategoriasBLL.Listar();
             return base.View();
         }

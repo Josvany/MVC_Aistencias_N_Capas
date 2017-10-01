@@ -319,6 +319,8 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_View.cshtml" />
     <Content Include="Views\Product\SearchProd.cshtml" />
+    <Content Include="Views\Product\Add_Product.cshtml" />
+    <Content Include="Views\Product\ViewToCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -87,5 +87,6 @@
     <Build Include="dbo\Stored Procedures\SP_IM_CATEGORIA.sql" />
     <Build Include="dbo\Stored Procedures\SP_ALL_ROLE.sql" />
     <Build Include="dbo\Stored Procedures\SP_ALL_CAT.sql" />
+    <Build Include="dbo\Tables\TEMP_PEDIDO.sql" />
   </ItemGroup>
 </Project>

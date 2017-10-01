@@ -1,4 +1,4 @@
-﻿//-----------------------
+//-----------------------
 // PATRON DE COLORES
 //-----------------------
 $texto:#111111;
@@ -48,9 +48,9 @@ header
 
 line height is 20px by default so add 30px top and bottom to equal the new .navbar-brand 80px height  */
 
-.navbar-brand {
-  height: 80px;
-}
+.navbar-brand {;
+
+  height: 80px}
 
 .nav >li >a {
   padding-top: 30px;
@@ -62,8 +62,29 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 }
 
 
-.info1
+.info
 {
+  background: url("../images/imgfondo1.jpg") no-repeat center top;
+  color: #fff;
+  background-size: cover;
+  background-attachment: fixed !important;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+   flex-direction: column;
+   border-radius: 20px;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.info1
+{   opacity: 0.5;
+
   background: url("../images/imgfondo1.jpg") no-repeat center top;
   color: #fff;
   background-size: cover;
@@ -139,4 +160,37 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 .dataTables_filter input
 {
 	border-radius: 8px;
+}
+.container
+{
+	clear:both;
+}
+
+section
+{
+
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	background-color:darkgrey;
+
+}
+
+section article 
+{
+	justify-content:center;
+	margin: 0 auto;
+	margin-top: 10px;
+	width : 30%;
+	height: 260px;
+	float: left;
+	margin-left :110px;
+  	color: black;
+}
+
+img 
+{
+	margin:0 auto;
+	width: 50%;
+	height :140px;
 }

@@ -1,0 +1,108 @@
+﻿@model IList<Entity.TEM_PED>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Entity.Pago_Entity> ObjPago = ViewBag.Pago;
+    var obj = new Entity.TEM_PED();
+
+}
+
+
+<div class="info2">
+    <div class="container">
+        @using (Html.BeginForm("CreateFactu", "Product", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-3" style="margin-bottom:30px;">
+                    <select name="Pag_Int_Id" class="form-control">
+                        @foreach (var pago in ObjPago)
+                        {
+                            <option value="@pago.Pag_Int_Id">
+                                @pago.Pag_Name
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <table class="table" style="top:100px;">
+                <tr>
+                    @*<th>
+                            @Html.DisplayNameFor(model => obj.Tem_Int_Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => obj.Cat_int_id)
+                        </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => obj.Use_Login)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => obj.Prod_Int_Id)
+                        </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => obj.Name_Prod)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => obj.Cant_Prod)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => obj.Precio_Prod)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => obj.Fecha)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @for (var item = 0; item < Model.Count; item++)
+                {
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(model => model[item].Tem_Int_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model[item].Cat_int_id)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(model => model[item].Use_Login)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(model => model[item].Prod_Int_Id)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(model => model[item].Name_Prod)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model[item].Cant_Prod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model[item].Precio_Prod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model[item].Fecha)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+
+
+            </table>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-2">
+                        <input type="submit" value="Generar Factura" class="btn btn-success" />
+                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

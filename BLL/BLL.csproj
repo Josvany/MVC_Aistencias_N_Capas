@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CategoriasBLL.cs" />
     <Compile Include="EmpleadosBLL.cs" />
+    <Compile Include="PagoBll.cs" />
     <Compile Include="Product_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolBLL.cs" />
