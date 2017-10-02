@@ -19,6 +19,8 @@
                 @if (Session["Use_Login"] != null)
                 {
                     @Html.ActionLink("Ver Carrito", "ViewToCar", "Product", "ViewToCar", new { use_lo = @use_log })
+                    @Html.ActionLink("Ver hisorial Facturas", "ViewToCar", "Product", "ViewToCar", new { use_lo = @use_log })
+
                 } 
             </li>
         </ul>

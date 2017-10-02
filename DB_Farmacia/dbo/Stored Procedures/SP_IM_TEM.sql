@@ -1,0 +1,26 @@
+﻿-- =============================================
+-- Author:		<Author,,Jeanneth Mota>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SP_IM_TEM] 
+(
+    @TEM_ID		     UNIQUEIDENTIFIER,
+    @TEM_USE_LOGIN   VARCHAR(50),
+    @TEM_PROD	     UNIQUEIDENTIFIER,
+	@TEM_CANT	     INT,
+	@TEM_PRECIO      DECIMAL(16,2),
+	@TEM_PROD_DATE   DATETIME
+)
+AS
+BEGIN
+	IF NOT EXISTS(SELECT * FROM TBL_TEM_PEDI WHERE TEM_PRODUC = @TEM_PROD AND TEM_USER_LOGIN = @TEM_USE_LOGIN)
+	BEGIN
+		INSERT INTO TBL_TEM_PEDI VALUES (NEWID(),@TEM_USE_LOGIN, @TEM_PROD, @TEM_CANT,@TEM_PRECIO, @TEM_PROD_DATE)
+	END
+	ELSE
+	BEGIN
+		UPDATE TBL_TEM_PEDI SET TEM_CANT = @TEM_CANT
+		WHERE TEM_PRODUC = @TEM_PROD AND TEM_USER_LOGIN = @TEM_USE_LOGIN
+	END
+END

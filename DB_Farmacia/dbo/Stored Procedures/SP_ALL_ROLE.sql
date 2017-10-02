@@ -1,9 +1,9 @@
 ﻿-- =============================================
--- Author:		<Author,,Name>
+-- Author:		<Author,,Jeanneth Mota>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE SP_ALL_ROLE 
+CREATE PROCEDURE [dbo].[SP_ALL_ROLE] 
 
 AS
 BEGIN

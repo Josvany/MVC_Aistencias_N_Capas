@@ -21,7 +21,7 @@ namespace Entity
         public string Name_Prod { get; set; }
         [Display(Name = "Cantidad Producto")]
         public int Cant_Prod { get; set; }
-        [Display(Name = "Nombre Precio")]
+        [Display(Name = "Precio")]
         public decimal Precio_Prod { get; set; }
         public DateTime Fecha { get; set; }
 

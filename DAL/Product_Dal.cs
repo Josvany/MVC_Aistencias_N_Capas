@@ -236,7 +236,51 @@ namespace DAL
 
         public static bool CreateFactu(List<TEM_PED> objTem, Pago_Entity objpago)
         {
-            return false;
+            string numFac = string.Empty;
+            int num;
+            bool flag = false;
+            try
+            {
+                DataTable dt = Conexion.GDatos.TraerDataTable("SP_Listar", "TBL_FACTURA");
+
+                dt.DefaultView.Sort = "[" + dt.Columns[1].ColumnName + "] DESC";
+
+                if (dt.Rows.Count == 0)
+                {
+                    numFac = "FAC-1";
+                }
+                else
+                {
+                    num = int.Parse(dt.Rows[0][1].ToString().Split('-').GetValue(1).ToString());
+                    numFac = "FAC-" + (num + 1);
+
+                }
+                //GENERO LA FACTURA
+                Conexion.GDatos.Ejecutar("SP_IM_FACTURA", numFac, objpago.Pag_Int_Id, DateTime.UtcNow, objTem[0].Use_Login);
+
+
+                //INGRESO EL DETALLE DE LA FACTURA
+                foreach (var item in objTem)
+                {
+                    Guid pro_id = (Guid)item.Prod_Int_Id;
+                    int catidad = item.Cant_Prod;
+                    decimal precio = item.Precio_Prod;
+
+                    Conexion.GDatos.Ejecutar("SP_IM_DET_FACTURA", Guid.NewGuid(), numFac, pro_id, catidad, precio, DateTime.UtcNow);
+                }
+
+                //Actualizo detalle de factura
+                Conexion.GDatos.Ejecutar("SP_IM_FACTURA", numFac, objpago.Pag_Int_Id, DateTime.UtcNow, objTem[0].Use_Login);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                flag = false;
+                throw;
+            }
+           
+
+            return flag;
         }
     }
 }

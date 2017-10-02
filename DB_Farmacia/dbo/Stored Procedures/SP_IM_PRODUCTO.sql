@@ -1,5 +1,5 @@
 ﻿-- =============================================
--- Author:		<Author,,Name>
+-- Author:		<Author,,Jeanneth Mota>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
@@ -12,7 +12,7 @@ CREATE PROCEDURE [dbo].[SP_IM_PRODUCTO] (
 	@PROD_CANT       INT,
 	@CAT_INT_ID      UNIQUEIDENTIFIER,
 	@PROD_STATUS     BIT,
-	@PROD_Image		 VARBINARY(MAX)
+	@PROD_IMAGE		 VARBINARY(MAX)
 )
 AS
 BEGIN
@@ -48,7 +48,7 @@ BEGIN
 					@PROD_CANT,
 					@CAT_INT_ID,
 					@PROD_STATUS,
-					@PROD_Image
+					@PROD_IMAGE
 			   )
 
 		END
@@ -62,7 +62,7 @@ BEGIN
 					PROD_CANT = @PROD_CANT,
 					CAT_INT_ID = @CAT_INT_ID,
 					PROD_STATUS = @PROD_STATUS,
-					PROD_IMAGE = @PROD_Image
+					PROD_IMAGE = @PROD_IMAGE
 			  WHERE PROD_INT_ID = @PROD_INT_ID
 
 		  END

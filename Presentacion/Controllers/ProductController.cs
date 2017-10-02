@@ -25,7 +25,8 @@ namespace Presentacion.Controllers
         [HttpPost]
         public ActionResult CreateFactu(List<TEM_PED> objTem, Pago_Entity objpago)
         {
-            return null;
+            var resul = Product_BLL.CreateFactu(objTem, objpago);
+            return Redirect("~/Home/Index");
         }
 
         public ActionResult ViewToCar(string use_login)

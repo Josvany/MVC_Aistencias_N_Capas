@@ -1,11 +1,11 @@
 ﻿-- =============================================
--- Author:		<Author,,Name>
+-- Author:		<Author,,Jeanneth Mota>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE SP_IM_DET_FACTURA (
-    @FAC_DET_INT_ID     UNIQUEIDENTIFIER = NULL,
-    @FAC_INT_ID         UNIQUEIDENTIFIER,
+CREATE PROCEDURE [dbo].[SP_IM_DET_FACTURA] (
+    @FAC_DET_INT_ID     UNIQUEIDENTIFIER,
+    @FAC_NUM			VARCHAR(100),
 	@PROD_INT_ID        UNIQUEIDENTIFIER,
 	@FAC_DET_CANTIDAD   INT,
 	@FAC_DET_PRECIO     DECIMAL(16,2),
@@ -21,7 +21,7 @@ BEGIN
 
     BEGIN TRY
 
-	  IF (@FAC_DET_INT_ID IS NULL)
+	  IF NOT EXISTS(SELECT * FROM TBL_DET_FACTURA WHERE FAC_DET_INT_ID = @FAC_DET_INT_ID)
 	  BEGIN
 
      INSERT INTO [dbo].[TBL_DET_FACTURA]
@@ -36,7 +36,7 @@ BEGIN
 		VALUES
 			   (
 					NEWID(),
-					@FAC_INT_ID,
+					(SELECT FAC_INT_ID FROM TBL_FACTURA WHERE FAC_NUMBER=@FAC_NUM),
 					@PROD_INT_ID,
 					@FAC_DET_CANTIDAD,
 					@FAC_DET_PRECIO,

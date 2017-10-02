@@ -15,7 +15,7 @@ namespace Entity
         public string Fac_Number { get; set; }
 
         [Display(Name = "Forma de Pago")]
-        [Required(ErrorMessage = "Ingresar Forma de Pago")]
+        //[Required(ErrorMessage = "Ingresar Forma de Pago")]
         public Guid Pag_Int_Id { get; set; }
 
         public DateTime Fecha_Factura { get; set; }
