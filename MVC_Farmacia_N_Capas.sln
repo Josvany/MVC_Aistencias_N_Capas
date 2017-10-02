@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentacion", "Presentacio
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_Farmacia", "DB_Farmacia\DB_Farmacia.sqlproj", "{C57CF8A2-4980-432F-A14D-79E7C1BE2E8E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{F822FA39-D626-40C0-8160-80A2F9181209}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Josvany_G\Documents\DB_FARMACIA.sql = C:\Users\Josvany_G\Documents\DB_FARMACIA.sql
+		C:\Users\Josvany_G\Documents\Info.txt = C:\Users\Josvany_G\Documents\Info.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
